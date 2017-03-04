@@ -1,0 +1,6 @@
+<div (mouseover)="_hover=true" (mouseleave)="_hover=false">
+    <label>{{placeholder}}</label>
+    <input pInputText type="text"  [(ngModel)]="searchParam"  placeholder="{{placeholder}}" (keyup.enter)="searchClick()"/>
+    <i *ngIf="_hover && searchParam" class="fa fa-times pointer"  style="right: 30px;" (click)="clearClick()" aria-hidden="true"></i>
+    <i class="fa fa-search pointer" aria-hidden="true" style="" (click)="searchClick()"></i>
+</div>

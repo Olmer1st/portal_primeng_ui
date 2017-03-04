@@ -1,0 +1,14 @@
+<div>
+    <ng-sidebar-container>
+
+        <!-- A sidebar -->
+        <ng-sidebar [(opened)]="_opened" mode="dock" dockedSize="24px" position="top">
+            <p>Sidebar contents</p>
+        </ng-sidebar>
+
+        <!-- Page content -->
+        <button (click)="_toggleSidebar()">Toggle sidebar</button>
+
+
+    </ng-sidebar-container>
+</div>

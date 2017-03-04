@@ -1,0 +1,52 @@
+{
+  "name": "portal_primeng_ui",
+  "version": "1.0.0",
+  "scripts": {
+    "clean": "gulp clean",
+    "compile": "gulp compile",
+    "build": "gulp build",
+    "start": "concurrently --kill-others \"gulp watch\" \"lite-server\"",
+    "lite": "lite-server",
+    "postinstall": "typings install",
+    "tsc": "tsc",
+    "tsc:w": "tsc -w"
+  },
+  "author": "Vadim Malkin aka Olmer",
+  "description": "UI based Angular2 final release + TypeScript",
+  "licenses": [],
+  "dependencies": {
+    "@angular/common": "~2.4.9",
+    "@angular/compiler": "~2.4.9",
+    "@angular/core": "~2.4.9",
+    "@angular/forms": "~2.4.9",
+    "@angular/http": "~2.4.9",
+    "@angular/platform-browser": "~2.4.9",
+    "@angular/platform-browser-dynamic": "~2.4.9",
+    "@angular/router": "~3.4.9",
+    "@angular/upgrade": "~2.4.9",
+    "angular-in-memory-web-api": "~0.3.0",
+    "core-js": "^2.4.1",
+    "font-awesome": "^4.7.0",
+    "moment": "^2.15.2",
+    "ng-sidebar": "^3.3.1",
+    "primeng": "^2.0.2",
+    "reflect-metadata": "^0.1.8",
+    "rxjs": "^5.0.0-rc.1",
+    "systemjs": "^0.20.9",
+    "zone.js": "^0.7.7"
+  },
+  "devDependencies": {
+    "@types/core-js": "^0.9.34",
+    "@types/node": "^7.0.5",
+    "concurrently": "^3.1.0",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-bundle-assets": "^2.27.1",
+    "gulp-sourcemaps": "^2.1.1",
+    "gulp-tslint": "^7.1.0",
+    "gulp-typescript": "^3.0.2",
+    "lite-server": "^2.2.2",
+    "tslint": "^4.5.1",
+    "typescript": "^2.0.3"
+  }
+}
