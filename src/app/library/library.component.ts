@@ -6,9 +6,9 @@ import {Component} from '@angular/core';
     templateUrl: "library.component.html"
 })
 export class LibraryComponent {
-    private _opened: boolean = false;
+    private _opened: boolean = false    ;
 
-    private _toggleSidebar() {
+    private _togglePanel() {
         this._opened = !this._opened;
     }
 }

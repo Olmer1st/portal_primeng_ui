@@ -84,7 +84,7 @@ gulp.task("libs", () => {
             // 'ng2-bootstrap/bundles/**',
             // 'ng2-select/**/*.js',
             'moment/min/moment-with-locales.js',
-            'ng-sidebar/lib/*.js',
+            // 'ng-sidebar/lib/*.js',
             'primeng/**/*.js'
         ], {
             cwd: "node_modules/**"

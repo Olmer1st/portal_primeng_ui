@@ -13,10 +13,9 @@ import {HeaderComponent} from '../header/header.component';
 import {FooterComponent} from '../footer/footer.component';
 import {HomeComponent} from '../home/home.component';
 import {AdminComponent} from '../admin/admin.component';
-import {ButtonModule, SplitButtonModule, ToolbarModule, InputTextModule, AutoCompleteModule,
-    TreeTableModule, SharedModule} from 'primeng/primeng';
+import {PanelModule, ButtonModule, SplitButtonModule, ToolbarModule, InputTextModule,
+    AutoCompleteModule, TreeTableModule, SharedModule} from 'primeng/primeng';
 
-import { SidebarModule } from 'ng-sidebar';
 import {PortalRoutes} from './portal.routes';
 import {APP_CONFIG, PORTAL_CONFIG} from './portal.providers';
 import {EmitterService} from '../shared/emitter.service';
@@ -28,10 +27,9 @@ import { FileSizePipe } from '../shared/filesize.pipe';
         CommonModule,
         FormsModule,
         PortalRoutes,
-        ButtonModule, SplitButtonModule, ToolbarModule, InputTextModule, AutoCompleteModule, TreeTableModule, SharedModule,
+        PanelModule, ButtonModule, SplitButtonModule, ToolbarModule, InputTextModule, AutoCompleteModule, TreeTableModule, SharedModule,
         HttpModule,
-        JsonpModule,
-        SidebarModule
+        JsonpModule
     ],
     declarations: [
         PortalComponent,
