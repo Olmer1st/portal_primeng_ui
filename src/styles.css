@@ -12,6 +12,17 @@ body {
     background-color: white;
 }
 
+.header {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+}
+
+.footer {
+    display: inline-block;
+    /*    position: relative;*/
+    width: 100%;
+}
 .pointer {
     cursor: pointer;
     pointer-events: all !important;
@@ -23,6 +34,13 @@ body {
 
 .relative {
     position: relative;
+}
+
+.content{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
 }
 
 .padding20px {

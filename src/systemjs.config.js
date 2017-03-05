@@ -25,7 +25,8 @@
             'rxjs': 'npm:rxjs',
             'angular-in-memory-web-api': 'npm:angular-in-memory-web-api',
             'moment': 'npm:moment/min/moment-with-locales.js',
-            'primeng': 'npm:primeng'
+            'primeng': 'npm:primeng',
+            'ng-sidebar': 'npm:ng-sidebar'
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {
@@ -41,6 +42,10 @@
                 defaultExtension: 'js'
             },
             'primeng': {
+                defaultExtension: 'js'
+            },
+            'ng-sidebar': {
+                main: 'lib/index',
                 defaultExtension: 'js'
             }
         }
