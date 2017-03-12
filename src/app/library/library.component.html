@@ -1,50 +1,15 @@
 <div class="relative">
     <ng-sidebar-container>
         <!-- A sidebar -->
-        <ng-sidebar [(opened)]="_opened" mode="dock" dockedSize="16px" position="top">
-            <div>
-                <p-panel header="Search" *ngIf="_opened">
-                    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="width:100%;margin: 10px 0px">
-                        <label class="first">Book Title:</label>
-                        <input pInputText type="text"/>
-                        <p-inputSwitch onLabel="and" offLabel="or" [(ngModel)]="checked2" class="float_center"></p-inputSwitch>
-                        <span class="clearfix"></span>
-                        <br />
-                        <label class="first">Author:</label>
-                        <p-autoComplete [(ngModel)]="text" [suggestions]="results" (completeMethod)="search($event)"></p-autoComplete>
-                        <p-inputSwitch onLabel="and" offLabel="or" [(ngModel)]="checked2" class="float_center"></p-inputSwitch>
-                        <span class="clearfix"></span>
-                        <br />
-                        <label class="first">Genres:</label>
-                        <p-autoComplete [(ngModel)]="texts" [suggestions]="results" (completeMethod)="search($event)" [multiple]="true"></p-autoComplete>
-                        <p-inputSwitch onLabel="and" offLabel="or" [(ngModel)]="checked2" class="float_center"></p-inputSwitch>
-                        <span class="clearfix"></span>
-                        <br />
-                        <label class="first">Series:</label>
-                        <p-autoComplete [(ngModel)]="text" [suggestions]="results" (completeMethod)="search($event)"></p-autoComplete>
-                        <p-inputSwitch onLabel="and" offLabel="or" [(ngModel)]="checked2" class="float_center"></p-inputSwitch>
-                        <span class="clearfix"></span>
-                        <br />
-                        <label class="first">Language:</label>
-                        <input pInputText type="text" />
-                        <br />
-                        <br />
-                        <div class="ui-grid-row">
-                            <button pButton type="button" label="Search" icon="fa-search" class="ui-button-success"></button>
-                            <button pButton type="button" label="Clear" icon="fa-eraser" class="ui-button-secondary"></button>
-                        </div>
-                    </div>
-                </p-panel>
-            </div>
-            <span class="clearfix"></span>
+        <ng-sidebar [(opened)]="_topBarOpened" mode="dock" dockedSize="16px" position="top">
+            <searchpanel *ngIf="_topBarOpened" isOpened="_topBarOpened" (onTogglePanelClicked)="onTogglePanelClicked()"></searchpanel>
             <div class="float_center">
-                <i class="fa fa-2x pointer" [ngClass]="{'fa-search-plus': !_opened,'fa-search-minus':_opened}" aria-hidden="true" (click)="_toggleSidebar()"></i>
+                <i class="fa fa-2x pointer" [ngClass]="{'fa-search-plus': !_topBarOpened,'fa-search-minus':_topBarOpened}" aria-hidden="true" (click)="_toggleSearchPanel()"></i>
             </div>
             <span class="clearfix"></span>
-            <!-- <button (click)="_toggleSidebar()">Toggle sidebar</button> -->
         </ng-sidebar>
         <!-- Page content -->
-        <p-dataTable [value]="cars" *ngIf="!_opened">
+        <p-dataTable [value]="cars" *ngIf="!_topBarOpened">
             <p-column field="vin" header="Vin"></p-column>
             <p-column field="year" header="Year"></p-column>
             <p-column field="brand" header="Brand"></p-column>

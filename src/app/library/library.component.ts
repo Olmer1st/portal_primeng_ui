@@ -1,15 +1,19 @@
-import {Component} from '@angular/core';
+import {Component, Output, Input, EventEmitter, OnInit} from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
     moduleId: module.id,
     selector: "library",
     templateUrl: "library.component.html",
-    styleUrls:['library.component.css']
+    styleUrls: ['library.component.css']
 })
 export class LibraryComponent {
-    private _opened: boolean = true;
+    private _topBarOpened: boolean = true;
+    onTogglePanelClicked() {
+        this._topBarOpened = !this._topBarOpened;
+    }
 
-    private _toggleSidebar() {
-        this._opened = !this._opened;
+    private _toggleSearchPanel() {
+        this._topBarOpened = !this._topBarOpened;
     }
 }

@@ -7,7 +7,6 @@
     margin-left: 2px;
     margin-right: 2px;
 }
-
 :host /deep/ .ng-sidebar--opened{
     top: 0 !important;
     position: relative;

@@ -6,7 +6,7 @@ import { HttpModule, JsonpModule } from '@angular/http';
 
 import { SearchboxComponent } from '../shared/searchbox/searchbox.component';
 import { SpinnerComponent }  from '../shared/spinner/spinner.component';
-
+import { SearchPanelComponent }  from '../library/searchpanel/searchpanel.component';
 import {PortalComponent} from './portal.component';
 import {LibraryComponent} from '../library/library.component';
 import {HeaderComponent} from '../header/header.component';
@@ -18,7 +18,6 @@ import {DataTableModule, DropdownModule, InputSwitchModule, PanelModule, ButtonM
 import { SidebarModule } from 'ng-sidebar';
 import {PortalRoutes} from './portal.routes';
 import {APP_CONFIG, PORTAL_CONFIG} from './portal.providers';
-import {EmitterService} from '../shared/emitter.service';
 import { FileSizePipe } from '../shared/filesize.pipe';
 
 @NgModule({
@@ -39,14 +38,14 @@ import { FileSizePipe } from '../shared/filesize.pipe';
         FooterComponent,
         AdminComponent,
         LibraryComponent,
+        SearchPanelComponent,
         HomeComponent,
         SearchboxComponent,
         SpinnerComponent,
         FileSizePipe
     ],
     providers: [
-        { provide: APP_CONFIG, useValue: PORTAL_CONFIG },
-        EmitterService
+        { provide: APP_CONFIG, useValue: PORTAL_CONFIG }
     ],
     bootstrap: [PortalComponent]
 })
