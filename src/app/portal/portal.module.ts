@@ -13,7 +13,7 @@ import {HeaderComponent} from '../header/header.component';
 import {FooterComponent} from '../footer/footer.component';
 import {HomeComponent} from '../home/home.component';
 import {AdminComponent} from '../admin/admin.component';
-import {PanelModule, ButtonModule, SplitButtonModule, ToolbarModule, InputTextModule,
+import {DataTableModule, DropdownModule, InputSwitchModule, PanelModule, ButtonModule, SplitButtonModule, ToolbarModule, InputTextModule,
     AutoCompleteModule, TreeTableModule, SharedModule} from 'primeng/primeng';
 import { SidebarModule } from 'ng-sidebar';
 import {PortalRoutes} from './portal.routes';
@@ -27,6 +27,7 @@ import { FileSizePipe } from '../shared/filesize.pipe';
         CommonModule,
         FormsModule,
         PortalRoutes,
+        DataTableModule, InputSwitchModule, DropdownModule,
         PanelModule, ButtonModule, SplitButtonModule, ToolbarModule, InputTextModule, AutoCompleteModule, TreeTableModule, SharedModule,
         HttpModule,
         JsonpModule,

@@ -1,0 +1,11 @@
+:host /deep/ .ng-sidebar {
+  position: absolute;
+}
+
+:host /deep/ .ui-panel{
+    float: left;
+}
+
+:host /deep/ .ui-datatable{
+    margin: 10px;
+}
