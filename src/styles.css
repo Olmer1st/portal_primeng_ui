@@ -245,3 +245,11 @@ body {
   position: relative;
   left: 50%;
 }
+
+.normal_button{
+    width: 200px !important;
+}
+
+.input_standard:{
+    min-width: 300px;
+}

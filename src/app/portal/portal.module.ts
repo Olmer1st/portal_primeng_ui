@@ -19,6 +19,7 @@ import { SidebarModule } from 'ng-sidebar';
 import {PortalRoutes} from './portal.routes';
 import {APP_CONFIG, PORTAL_CONFIG} from './portal.providers';
 import { FileSizePipe } from '../shared/filesize.pipe';
+import {LibraryService} from '../library/library.service';
 
 @NgModule({
     imports: [
@@ -42,10 +43,12 @@ import { FileSizePipe } from '../shared/filesize.pipe';
         HomeComponent,
         SearchboxComponent,
         SpinnerComponent,
-        FileSizePipe
+        FileSizePipe,
+
     ],
     providers: [
-        { provide: APP_CONFIG, useValue: PORTAL_CONFIG }
+        { provide: APP_CONFIG, useValue: PORTAL_CONFIG },
+        LibraryService,
     ],
     bootstrap: [PortalComponent]
 })

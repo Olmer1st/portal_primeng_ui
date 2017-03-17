@@ -1,0 +1,58 @@
+<p-panel header="Search">
+    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="height:60%;width:100%;margin: 10px 0px">
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                <label class="first">Language:</label>
+            </div>
+            <div class="ui-grid-col-2">
+                <p-dropdown [options]="languages" [(ngModel)]="searchQuery.language" placeholder="Choose a language" [style]="{'width':'250px'}"></p-dropdown>
+            </div>
+            <div class="ui-grid-col2">
+                <label class="first">Search Operator:</label>
+            </div>
+            <div class="ui-grid-col2">
+                <p-inputSwitch onLabel="AND" offLabel="OR" [(ngModel)]="searchQuery.operator"></p-inputSwitch>
+            </div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                <label class="first">Book Title:</label>
+            </div>
+            <div class="ui-grid-col-6">
+                <input pInputText type="text" [(ngModel)]="searchQuery.bookTitle" class="input_standard" />
+            </div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                <label class="first">Author:</label>
+            </div>
+            <div class="ui-grid-col-6">
+                <p-autoComplete [suggestions]="authors" field="display" (completeMethod)="searchAuthors($event)" [(ngModel)]="searchQuery.author" class="input_standard" minLength="2"></p-autoComplete>
+            </div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                <label class="first">Genres:</label>
+            </div>
+            <div class="ui-grid-col-6">
+                <p-autoComplete [suggestions]="genres"  field="gdesc" (completeMethod)="searchGenre($event)" [multiple]="true" [(ngModel)]="searchQuery.genres" class="input_standard" minLength="2"></p-autoComplete>
+            </div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                <label class="first">Serie:</label>
+            </div>
+            <div class="ui-grid-col-6">
+                <p-autoComplete  [suggestions]="series" (completeMethod)="searchSeries($event)" [(ngModel)]="searchQuery.serie" class="input_standard"  minLength="2"></p-autoComplete>
+            </div>
+        </div>
+        <br />
+        <div class="ui-grid-row">
+            <div style="margin-left:30%;">
+                <button pButton type="button" label="Search" icon="fa-search" class="ui-button-success normal_button" (click)="search()"></button>
+                <button pButton type="button" label="Clear" icon="fa-eraser" class="ui-button-secondary normal_button" (click)="clear()"></button>
+            </div>
+
+        </div>
+    </div>
+</p-panel>
