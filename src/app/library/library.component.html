@@ -2,19 +2,25 @@
     <ng-sidebar-container>
         <!-- A sidebar -->
         <ng-sidebar [(opened)]="_topBarOpened" mode="dock" dockedSize="16px" position="top">
-            <searchpanel *ngIf="_topBarOpened" isOpened="_topBarOpened" (onTogglePanelClicked)="onTogglePanelClicked()"></searchpanel>
+            <searchpanel *ngIf="_topBarOpened" isOpened="_topBarOpened" (onTogglePanelClicked)="onTogglePanelClicked()" (onStartSearch)="onStartSearch($event)"></searchpanel>
             <div class="float_center">
                 <i class="fa fa-2x pointer" [ngClass]="{'fa-search-plus': !_topBarOpened,'fa-search-minus':_topBarOpened}" aria-hidden="true" (click)="_toggleSearchPanel()"></i>
             </div>
             <span class="clearfix"></span>
         </ng-sidebar>
         <!-- Page content -->
-        <p-dataTable [value]="cars" *ngIf="!_topBarOpened">
-            <p-column field="vin" header="Vin"></p-column>
-            <p-column field="year" header="Year"></p-column>
-            <p-column field="brand" header="Brand"></p-column>
-            <p-column field="color" header="Color"></p-column>
+        <p-dataTable [value]="books" *ngIf="!_topBarOpened" resizableColumns="true" columnResizeMode="fit" [rows]="20" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[10,20,50]" sortMode="multiple">
+            <p-column field="author" header="Author" [style]="{'width':'15%'}"></p-column>
+            <p-column field="title" header="Title" [sortable]="true" [style]="{'width':'30%'}"></p-column>
+            <p-column field="series" header="Serie" [sortable]="true" [style]="{'width':'25%'}"></p-column>
+            <p-column field="serno" header="#" sortable="custom" (sortFunction)="NumbersSort($event)" [style]="{'width':'3%'}"></p-column>
+            <!-- <p-column field="size" header="Size" sortable="custom" (sortFunction)="NumbersSort($event)">
+                <template let-node="rowData" pTemplate="body">
+                    {{node.size | fileSize}}
+                </template>
+            </p-column> -->
+            <p-column field="date" header="Date"  sortable="custom" (sortFunction)="DateSort($event)" [style]="{'width':'7%'}"></p-column>
+            <p-column field="genre" header="Genre"></p-column>
         </p-dataTable>
-
     </ng-sidebar-container>
 </div>

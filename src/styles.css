@@ -89,11 +89,15 @@ body {
     width: 20%;
 }
 
-.max-div-height {
-    max-height: 800px;
-    overflow-x: hidden;
-    overflow-y: auto;
+ellipsis {
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    -ms-text-overflow: ellipsis;
 }
+
 
 .sk-folding-cube {
     margin: 20px auto;

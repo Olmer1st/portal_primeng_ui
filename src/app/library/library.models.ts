@@ -24,3 +24,12 @@ export interface Author {
     key: string;
     display: string;
 }
+
+export interface SearchQuery {
+    bookTitle: string;
+    operator: boolean;
+    author: Author;
+    genres: Genre[];
+    serie: string;
+    language:string;
+}

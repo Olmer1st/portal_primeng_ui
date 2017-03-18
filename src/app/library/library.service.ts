@@ -1,6 +1,6 @@
 import { Injectable, Inject }     from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { Author, Genre, Book}  from './library.models';
+import { Author, Genre, Book, SearchQuery}  from './library.models';
 import { APP_CONFIG, AppConfig } from '../portal/portal.providers';
 import {Observable} from 'rxjs/Rx';
 //
@@ -59,6 +59,15 @@ export class LibraryService {
         const url = this.config.apiRootUrl + "library/genres/search/" + search;
         // ...using get request
         return this.http.get(url)
+            // ...and calling .json() on the response to return data
+            .map((res: Response) => res.json())
+            //...errors if any
+            .catch((error: any) => Observable.throw(error || 'Server error'));
+    }
+    searchForBook(query: SearchQuery): Observable<Book[]> {
+        const url = this.config.apiRootUrl + "library/books/search";
+        // ...using get request
+        return this.http.post(url, query)
             // ...and calling .json() on the response to return data
             .map((res: Response) => res.json())
             //...errors if any

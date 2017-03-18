@@ -1,7 +1,7 @@
 import {Component, Output, Input, EventEmitter, OnInit} from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import {LibraryService} from '../library.service';
-import { Author, Genre, Book}  from '../library.models';
+import { Author, Genre, Book, SearchQuery}  from '../library.models';
 import {SelectItem} from 'primeng/primeng';
 
 @Component({
@@ -12,7 +12,7 @@ import {SelectItem} from 'primeng/primeng';
 })
 export class SearchPanelComponent implements OnInit {
     private _copyDefaultSearchQuery = null;
-    public searchQuery = {
+    public searchQuery: SearchQuery = {
         bookTitle: null,
         operator: true,
         author: null,
@@ -24,8 +24,10 @@ export class SearchPanelComponent implements OnInit {
     languages: SelectItem[] = [];
     authors: Author[];
     genres: Genre[];
-    series:string[];
+    series: string[];
+    // books: Book[];
     @Output() onTogglePanelClicked = new EventEmitter();
+    @Output() onStartSearch = new EventEmitter<SearchQuery>();
     constructor(private _libraryService: LibraryService) {
         this._copyDefaultSearchQuery = JSON.parse(JSON.stringify(this.searchQuery));
     }
@@ -71,6 +73,7 @@ export class SearchPanelComponent implements OnInit {
         this.loadLanguages();
     }
     search() {
+        this.onStartSearch.emit(this.searchQuery);
         this.onTogglePanelClicked.emit();
     }
 
