@@ -34,6 +34,10 @@ export class SearchPanelComponent implements OnInit {
     selectLanguage(choice: string): void {
         this.searchQuery.language = choice;
     }
+
+    get isCannotSelectGenry(){
+        return !this.searchQuery.bookTitle && !this.searchQuery.author && !this.searchQuery.serie;
+    }
     searchGenre(event) {
         let query = event.query;
         this._libraryService.getGenres(query).subscribe(genres => {

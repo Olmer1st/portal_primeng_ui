@@ -257,3 +257,7 @@ ellipsis {
 .input_standard:{
     min-width: 300px;
 }
+
+a {
+    text-decoration: none !important;
+}

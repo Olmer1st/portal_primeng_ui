@@ -9,18 +9,36 @@
             <span class="clearfix"></span>
         </ng-sidebar>
         <!-- Page content -->
-        <p-dataTable [value]="books" *ngIf="!_topBarOpened" resizableColumns="true" columnResizeMode="fit" [rows]="20" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[10,20,50]" sortMode="multiple">
-            <p-column field="author" header="Author" [style]="{'width':'15%'}"></p-column>
-            <p-column field="title" header="Title" [sortable]="true" [style]="{'width':'30%'}"></p-column>
-            <p-column field="series" header="Serie" [sortable]="true" [style]="{'width':'25%'}"></p-column>
-            <p-column field="serno" header="#" sortable="custom" (sortFunction)="NumbersSort($event)" [style]="{'width':'3%'}"></p-column>
-            <!-- <p-column field="size" header="Size" sortable="custom" (sortFunction)="NumbersSort($event)">
-                <template let-node="rowData" pTemplate="body">
+            <!-- sortField="series"sortMode="multiple" [rowsPerPageOptions]="[10,20,50]" [rows]="20" [paginator]="true" [pageLinks]="5" -->
+        <spinner-section *ngIf="loadingData"></spinner-section>
+        <p-dataTable [value]="books" *ngIf="!_topBarOpened"
+        resizableColumns="true"  reorderableColumns="true"
+        columnResizeMode="fit"
+        rowGroupMode="subheader" groupField="series" expandableRowGroups="true"
+        [sortableRowGroup]="false">
+            <ng-template pTemplate="rowgroupheader" let-rowData>{{rowData.series}}</ng-template>
+            <p-column field="title" header="Title" [sortable]="false" [style]="{'width':'35%'}"></p-column>
+            <p-column field="author" header="Author" [style]="{'width':'25%'}">
+                <ng-template let-node="rowData" pTemplate="body">
+                    <span style="white-space: normal;">{{node.author}}</span>
+                </ng-template>
+            </p-column>
+            <!-- <p-column field="series" header="Serie" [sortable]="true" [style]="{'width':'25%'}"></p-column> -->
+            <!-- <p-column field="serno" header="#" sortable="false" (sortFunction)="NumbersSort($event)" [style]="{'width':'3%'}"></p-column> -->
+            <p-column field="serno" header="#"  [style]="{'width':'3%'}"></p-column>
+             <!-- sortable="false" (sortFunction)="NumbersSort($event)" -->
+            <p-column field="size" header="Size" [style]="{'width':'5%'}">
+                <ng-template let-node="rowData" pTemplate="body">
                     {{node.size | fileSize}}
-                </template>
-            </p-column> -->
-            <p-column field="date" header="Date"  sortable="custom" (sortFunction)="DateSort($event)" [style]="{'width':'7%'}"></p-column>
-            <p-column field="genre" header="Genre"></p-column>
+                </ng-template>
+            </p-column>
+            <!-- <p-column field="date" header="Date"  sortable="false" (sortFunction)="DateSort($event)" [style]="{'width':'7%'}"></p-column> -->
+            <p-column field="date" header="Date"  [style]="{'width':'7%'}"></p-column>
+            <p-column field="genre" header="Genre">
+                <ng-template let-node="rowData" pTemplate="body">
+                    <span style="white-space: normal;">{{node.genre}}</span>
+                </ng-template>
+            </p-column>
         </p-dataTable>
     </ng-sidebar-container>
 </div>

@@ -1,6 +1,7 @@
 import {NgModule}      from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {BrowserModule} from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 
@@ -14,7 +15,7 @@ import {FooterComponent} from '../footer/footer.component';
 import {HomeComponent} from '../home/home.component';
 import {AdminComponent} from '../admin/admin.component';
 import {DataTableModule, DropdownModule, InputSwitchModule, PanelModule, ButtonModule, SplitButtonModule, ToolbarModule, InputTextModule,
-    AutoCompleteModule, TreeTableModule, SharedModule} from 'primeng/primeng';
+    PasswordModule, AutoCompleteModule, TreeTableModule, SharedModule} from 'primeng/primeng';
 import { SidebarModule } from 'ng-sidebar';
 import {PortalRoutes} from './portal.routes';
 import {APP_CONFIG, PORTAL_CONFIG} from './portal.providers';
@@ -24,10 +25,11 @@ import {LibraryService} from '../library/library.service';
 @NgModule({
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         CommonModule,
         FormsModule,
         PortalRoutes,
-        DataTableModule, InputSwitchModule, DropdownModule,
+        DataTableModule, InputSwitchModule, DropdownModule, PasswordModule,
         PanelModule, ButtonModule, SplitButtonModule, ToolbarModule, InputTextModule, AutoCompleteModule, TreeTableModule, SharedModule,
         HttpModule,
         JsonpModule,

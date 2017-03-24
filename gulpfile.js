@@ -62,7 +62,7 @@ gulp.task("font-awesome", () => {
 // });
 
 gulp.task("primeng", () => {
-    return gulp.src(["resources/themes/home/**",
+    return gulp.src(["resources/themes/home/**", "resources/imag**/*", 
             "resources/primeng.min.css"
         ], {
             cwd: "node_modules/primeng"

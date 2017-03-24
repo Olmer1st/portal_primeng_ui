@@ -5,6 +5,12 @@
             <button pButton type="button" label="Library" (click)="navigate('/library', $event)" [ngClass]="(!isActive('/library')?'ui-button-secondary':'')"></button>
         </div>
         <div class="ui-toolbar-group-right">
+
+            <label class="first">username:</label>
+            <input pInputText type="text" [(ngModel)]="userEmail" class="input_standard" />
+            <label class="first">password:</label>
+            <input type="password" pPassword [(ngModel)]="userPassword"  class="input_standard" [feedback]="false"/>
+            <button pButton type="button" label="Login"  icon="fa-sign-in" (click)="login()"></button>
             <button pButton type="button" label="Admin" (click)="navigate('/admin', $event)" [ngClass]="(!isActive('/admin')?'ui-button-secondary':'')"></button>
         </div>
     </p-toolbar>

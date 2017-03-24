@@ -1,18 +1,19 @@
 :host /deep/ .ng-sidebar {
-  position: absolute;
+    position: absolute;
 }
 
-:host /deep/ .ui-datatable{
+:host /deep/ .ui-datatable {
     margin-top: 20px;
     margin-left: 2px;
     margin-right: 2px;
 }
-:host /deep/ .ng-sidebar--opened{
+
+:host /deep/ .ng-sidebar--opened {
     top: 0 !important;
     position: relative;
 }
 
-:host /deep/ .ng-sidebar__content{
+:host /deep/ .ng-sidebar__content {
     height: auto;
     overflow: hidden;
     margin: auto !important;
