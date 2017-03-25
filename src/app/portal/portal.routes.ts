@@ -3,15 +3,24 @@ import { RouterModule, Routes } from '@angular/router';
 import {AdminComponent} from '../admin/admin.component';
 import {LibraryComponent} from '../library/library.component';
 import {HomeComponent} from '../home/home.component';
-
+import {AuthGuard} from '../shared/auth-guard.service';
+import {AuthService} from '../shared/auth.service';
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'home', component: HomeComponent},
-    { path: 'library',  component: LibraryComponent },
-    { path: 'admin',  component: AdminComponent }
+    { path: '**', component: HomeComponent },
+    { path: 'home', component: HomeComponent },
+    {
+        path: 'library', component: LibraryComponent, canActivate: [AuthGuard],
+        data: { roles: ['library', 'admin'] }
+    },
+    {
+        path: 'admin', component: AdminComponent, canActivate: [AuthGuard],
+        data: { roles: ['admin'] }
+    }
 ];
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
+    providers: [AuthGuard, AuthService]
 })
 export class PortalRoutes { }
