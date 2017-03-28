@@ -9,7 +9,9 @@ export interface AppConfig {
 export const PORTAL_CONFIG: AppConfig = {
     apiRootUrl: "http://localhost:5000/v1/",
     title: 'Dependency Injection',
-    settings:{}
+    settings:{
+        sessionId:"X-Auth-Token"
+    }
 };
 
 export let APP_CONFIG = new OpaqueToken('app.config');
