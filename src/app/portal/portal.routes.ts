@@ -7,11 +7,11 @@ import {AuthGuard} from '../shared/auth-guard.service';
 import {AuthService} from '../shared/auth.service';
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: '**', component: HomeComponent },
+    // { path: '**', component: HomeComponent },
     { path: 'home', component: HomeComponent },
     {
         path: 'library', component: LibraryComponent, canActivate: [AuthGuard],
-        data: { roles: ['library', 'admin'] }
+        data: { roles: ['user', 'admin'] }
     },
     {
         path: 'admin', component: AdminComponent, canActivate: [AuthGuard],
