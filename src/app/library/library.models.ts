@@ -6,6 +6,7 @@ export interface Genre {
 
 
 export interface Book {
+    title: string;
     author: string;
     series: string;
     size: number;

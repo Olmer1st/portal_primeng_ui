@@ -35,7 +35,7 @@
                 <label class="first">Genres:</label>
             </div>
             <div class="ui-grid-col-6">
-                <p-autoComplete [suggestions]="genres"  field="gdesc" (completeMethod)="searchGenre($event)" [multiple]="true" [(ngModel)]="searchQuery.genres" class="input_standard" minLength="2" disabled="{{isCannotSelectGenry}}"></p-autoComplete>
+                <p-autoComplete [suggestions]="filteredGenres"  field="gdesc" (completeMethod)="searchGenre($event)" [multiple]="true" [(ngModel)]="searchQuery.genres" class="input_standard" minLength="2" disabled="{{isCannotSelectGenry}}"></p-autoComplete>
             </div>
         </div>
         <div class="ui-grid-row">

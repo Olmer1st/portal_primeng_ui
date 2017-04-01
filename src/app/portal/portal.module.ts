@@ -9,15 +9,13 @@ import { SearchboxComponent } from '../shared/searchbox/searchbox.component';
 import { SpinnerComponent }  from '../shared/spinner/spinner.component';
 import { SearchPanelComponent }  from '../library/searchpanel/searchpanel.component';
 import {PortalComponent} from './portal.component';
-import {LibraryComponent} from '../library/library.component';
 import {HeaderComponent} from '../header/header.component';
 import {FooterComponent} from '../footer/footer.component';
-import {HomeComponent} from '../home/home.component';
-import {AdminComponent} from '../admin/admin.component';
-import {DataTableModule, DropdownModule, InputSwitchModule, PanelModule, ButtonModule, SplitButtonModule, ToolbarModule, InputTextModule,
+import { DataTableModule, DropdownModule, InputSwitchModule, PanelModule,
+    ButtonModule, SplitButtonModule, ToolbarModule, InputTextModule,
     PasswordModule, AutoCompleteModule, TreeTableModule, SharedModule} from 'primeng/primeng';
 import { SidebarModule } from 'ng-sidebar';
-import {PortalRoutes} from './portal.routes';
+import {PortalRoutes, routedComponents} from './portal.routes';
 import {APP_CONFIG, PORTAL_CONFIG} from './portal.providers';
 import { FileSizePipe } from '../shared/filesize.pipe';
 import {LibraryService} from '../library/library.service';
@@ -37,16 +35,13 @@ import {LibraryService} from '../library/library.service';
     ],
     declarations: [
         PortalComponent,
+        routedComponents,
         HeaderComponent,
         FooterComponent,
-        AdminComponent,
-        LibraryComponent,
         SearchPanelComponent,
-        HomeComponent,
         SearchboxComponent,
         SpinnerComponent,
-        FileSizePipe,
-
+        FileSizePipe
     ],
     providers: [
         { provide: APP_CONFIG, useValue: PORTAL_CONFIG },

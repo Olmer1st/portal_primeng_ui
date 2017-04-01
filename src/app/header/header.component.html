@@ -2,7 +2,7 @@
     <p-toolbar>
         <div class="ui-toolbar-group-left">
             <button pButton type="button" label="Home" (click)="navigate('/home', $event)" [ngClass]="(!isActive('/home')?'ui-button-secondary':'')"></button>
-            <button pButton type="button" label="Library" (click)="navigate('/library', $event)" [ngClass]="(!isActive('/library')?'ui-button-secondary':'')"></button>
+            <button pButton type="button"  *ngIf="isVisible('library')" label="Library" (click)="navigate('/library', $event)" [ngClass]="(!isActive('/library')?'ui-button-secondary':'')"></button>
         </div>
         <div class="ui-toolbar-group-right">
             <span *ngIf="!currentUser">
@@ -12,8 +12,9 @@
                 <input type="password" pPassword [(ngModel)]="userPassword"  class="input_standard" [feedback]="false"/>
                 <button pButton type="button" label="Login"  icon="fa-sign-in" (click)="login()"></button>
             </span>
-            <span *ngIf="currentUser">{{currentUser.display}}</span>
-            <button pButton type="button" label="Admin" (click)="navigate('/admin', $event)" [ngClass]="(!isActive('/admin')?'ui-button-secondary':'')"></button>
+            <p-splitButton *ngIf="currentUser" label="{{wellcomeTitle}}" icon="fa-user-o" class="ui-button-success" appendTo="body"  [model]="items"></p-splitButton>
+            <!-- <span >{{}}</span> -->
+            <button pButton type="button"  *ngIf="isVisible('admin')" label="Admin" (click)="navigate('/admin', $event)" [ngClass]="(!isActive('/admin')?'ui-button-secondary':'')"></button>
         </div>
     </p-toolbar>
     <br />

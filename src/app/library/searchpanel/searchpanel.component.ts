@@ -20,10 +20,12 @@ export class SearchPanelComponent implements OnInit {
         serie: null,
         language: "ru"
     };
-    // selectedLanguage: string = "ru";
+    @Input()
     languages: SelectItem[] = [];
     authors: Author[];
-    genres: Genre[];
+    @Input()
+    genres: Genre[] = [];
+    filteredGenres: Genre[] = [];
     series: string[];
     // books: Book[];
     @Output() onTogglePanelClicked = new EventEmitter();
@@ -35,17 +37,22 @@ export class SearchPanelComponent implements OnInit {
         this.searchQuery.language = choice;
     }
 
-    get isCannotSelectGenry(){
+    get isCannotSelectGenry() {
         return !this.searchQuery.bookTitle && !this.searchQuery.author && !this.searchQuery.serie;
     }
     searchGenre(event) {
         let query = event.query;
-        this._libraryService.getGenres(query).subscribe(genres => {
-            this.genres = genres;
-        }, err => {
-            // Log errors if any
-            console.log(err);
-        });
+        if (!this.genres || !this.genres.length) {
+            this._libraryService.getGenres(query).subscribe(genres => {
+                this.filteredGenres = genres;
+            }, err => {
+                // Log errors if any
+                console.log(err);
+            });
+        } else {
+            this.filteredGenres = this.genres.filter(g => g.gdesc.includes(query));
+        }
+
     }
     searchSeries(event) {
         let query = event.query;
@@ -65,16 +72,9 @@ export class SearchPanelComponent implements OnInit {
             console.log(err);
         });
     }
-    private loadLanguages(): void {
-        this._libraryService.getLanguages()
-            .subscribe(langs => this.languages = langs.map((l) => { return { label: l, value: l }; }), //Bind to view
-            err => {
-                // Log errors if any
-                console.log(err);
-            });
-    }
+
     ngOnInit(): void {
-        this.loadLanguages();
+
     }
     search() {
         this.onStartSearch.emit(this.searchQuery);

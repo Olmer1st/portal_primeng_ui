@@ -43,6 +43,7 @@ body {
     display: block;
     width: 100%;
     height: auto;
+    z-index: 0;
 }
 
 .padding20px {
@@ -89,7 +90,7 @@ body {
     width: 20%;
 }
 
-ellipsis {
+.ellipsis {
     width: 200px;
     white-space: nowrap;
     overflow: hidden;
@@ -98,6 +99,10 @@ ellipsis {
     -ms-text-overflow: ellipsis;
 }
 
+.content-center {
+    text-align: center !important;
+    vertical-align: middle !important;
+}
 
 .sk-folding-cube {
     margin: 20px auto;
@@ -239,22 +244,23 @@ ellipsis {
 }
 
 .float_center {
-  float: right;
-
-  position: relative;
-  left: -50%; /* or right 50% */
-  text-align: left;
-}
-.float_center > .child {
-  position: relative;
-  left: 50%;
+    float: right;
+    position: relative;
+    left: -50%;
+    /* or right 50% */
+    text-align: left;
 }
 
-.normal_button{
+.float_center>.child {
+    position: relative;
+    left: 50%;
+}
+
+.normal_button {
     width: 200px !important;
 }
 
-.input_standard:{
+.input_standard: {
     min-width: 300px;
 }
 

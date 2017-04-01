@@ -2,21 +2,26 @@
     <ng-sidebar-container>
         <!-- A sidebar -->
         <ng-sidebar [(opened)]="_topBarOpened" mode="dock" dockedSize="16px" position="top">
-            <searchpanel *ngIf="_topBarOpened" isOpened="_topBarOpened" (onTogglePanelClicked)="onTogglePanelClicked()" (onStartSearch)="onStartSearch($event)"></searchpanel>
+            <searchpanel *ngIf="_topBarOpened" [genres]="genres" [languages]="languages" (onTogglePanelClicked)="onTogglePanelClicked()" (onStartSearch)="onStartSearch($event)"></searchpanel>
             <div class="float_center">
                 <i class="fa fa-2x pointer" [ngClass]="{'fa-search-plus': !_topBarOpened,'fa-search-minus':_topBarOpened}" aria-hidden="true" (click)="_toggleSearchPanel()"></i>
             </div>
             <span class="clearfix"></span>
         </ng-sidebar>
         <!-- Page content -->
-            <!-- sortField="series"sortMode="multiple" [rowsPerPageOptions]="[10,20,50]" [rows]="20" [paginator]="true" [pageLinks]="5" -->
+        <!-- sortField="series"sortMode="multiple" [rowsPerPageOptions]="[10,20,50]" [rows]="20" [paginator]="true" [pageLinks]="5" -->
         <spinner-section *ngIf="loadingData"></spinner-section>
-        <p-dataTable [value]="books" *ngIf="!_topBarOpened"
-        resizableColumns="true"  reorderableColumns="true"
-        columnResizeMode="fit"
-        rowGroupMode="subheader" groupField="series" expandableRowGroups="true"
-        [sortableRowGroup]="false">
+        <p-dataTable [value]="books" *ngIf="!_topBarOpened" resizableColumns="true" reorderableColumns="true" columnResizeMode="fit" rowGroupMode="subheader" groupField="series" expandableRowGroups="true" [sortableRowGroup]="false" [(selection)]="selectedBooks" dataKey="file">
+            <p-header *ngIf="selectedBooks.length">
+                <label class="first">Selected books: {{selectedBooks.length}}</label>
+                <ul>
+                    <li *ngFor="let book of selectedBooks" style="text-align: left">{{book.title}}</li>
+                </ul>
+            </p-header>
+            <p-footer>Total books found: {{books.length}}</p-footer>
             <ng-template pTemplate="rowgroupheader" let-rowData>{{rowData.series}}</ng-template>
+            <p-column [style]="{'width':'38px'}" selectionMode="multiple" disabled="true">
+            </p-column>
             <p-column field="title" header="Title" [sortable]="false" [style]="{'width':'35%'}"></p-column>
             <p-column field="author" header="Author" [style]="{'width':'25%'}">
                 <ng-template let-node="rowData" pTemplate="body">
@@ -25,15 +30,15 @@
             </p-column>
             <!-- <p-column field="series" header="Serie" [sortable]="true" [style]="{'width':'25%'}"></p-column> -->
             <!-- <p-column field="serno" header="#" sortable="false" (sortFunction)="NumbersSort($event)" [style]="{'width':'3%'}"></p-column> -->
-            <p-column field="serno" header="#"  [style]="{'width':'3%'}"></p-column>
-             <!-- sortable="false" (sortFunction)="NumbersSort($event)" -->
+            <p-column field="serno" header="#" [style]="{'width':'3%'}"></p-column>
+            <!-- sortable="false" (sortFunction)="NumbersSort($event)" -->
             <p-column field="size" header="Size" [style]="{'width':'5%'}">
                 <ng-template let-node="rowData" pTemplate="body">
                     {{node.size | fileSize}}
                 </ng-template>
             </p-column>
             <!-- <p-column field="date" header="Date"  sortable="false" (sortFunction)="DateSort($event)" [style]="{'width':'7%'}"></p-column> -->
-            <p-column field="date" header="Date"  [style]="{'width':'7%'}"></p-column>
+            <p-column field="date" header="Date" [style]="{'width':'7%'}"></p-column>
             <p-column field="genre" header="Genre">
                 <ng-template let-node="rowData" pTemplate="body">
                     <span style="white-space: normal;">{{node.genre}}</span>

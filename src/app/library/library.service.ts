@@ -41,7 +41,7 @@ export class LibraryService {
     getLanguages(): Observable<string[]> {
         const url = this.config.apiRootUrl + "library/languages";
         // ...using get request
-        return this.http.get(url,  this._authService.httpOptions)
+        return this.http.get(url, this._authService.httpOptions)
             // ...and calling .json() on the response to return data
             .map((res: Response) => res.json())
             //...errors if any
@@ -56,8 +56,8 @@ export class LibraryService {
             //...errors if any
             .catch((error: any) => Observable.throw(error || 'Server error'));
     }
-    getGenres(search: string): Observable<Genre[]> {
-        const url = this.config.apiRootUrl + "library/genres/search/" + search;
+    getGenres(search: string = ""): Observable<Genre[]> {
+        const url = this.config.apiRootUrl + `library/genres/search/${search}`;
         // ...using get request
         return this.http.get(url, this._authService.httpOptions)
             // ...and calling .json() on the response to return data

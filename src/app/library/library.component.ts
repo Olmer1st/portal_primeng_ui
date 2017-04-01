@@ -2,6 +2,7 @@ import {Component, Output, Input, EventEmitter, OnInit} from '@angular/core';
 import {LibraryService} from './library.service';
 import { Author, Genre, Book, SearchQuery}  from './library.models';
 import { Observable } from 'rxjs/Observable';
+import {SelectItem} from 'primeng/primeng';
 
 @Component({
     moduleId: module.id,
@@ -9,10 +10,13 @@ import { Observable } from 'rxjs/Observable';
     templateUrl: "library.component.html",
     styleUrls: ['library.component.css']
 })
-export class LibraryComponent {
+export class LibraryComponent implements OnInit {
     private _topBarOpened: boolean = true;
-    books: Book[];
-    loadingData:boolean = false;
+    books: Book[] = [];
+    selectedBooks : Book[] = [];
+    genres: Genre[] = [];
+    languages: SelectItem[] = [];
+    loadingData: boolean = false;
     constructor(private _libraryService: LibraryService) {
     }
     onTogglePanelClicked() {
@@ -28,8 +32,15 @@ export class LibraryComponent {
                     book.author = author.replace(/,/g, " ").replace(/:/g, ", ");
                     // books
                     book.series = (book.series) ? book.series.trim() : "";
-                    let genre = (book.genre.lastIndexOf(":") > -1) ? book.genre.substring(0, book.genre.length - 1) : book.genre;
-                    book.genre = genre.replace(/:/g, ", ");
+                    let genreRow = (book.genre.lastIndexOf(":") > -1) ? book.genre.substring(0, book.genre.length - 1) : book.genre;
+                    let filteredGenres = [];
+                    for (let genreCode of genreRow.split(":")) {
+                        let genre = this.genres.find(g => g.code === genreCode);
+                        if (genre) {
+                            filteredGenres.push(genre.gdesc);
+                        }
+                    }
+                    book.genre = filteredGenres.join(", "); //genre.replace(/:/g, ", ");
                     return book;
                 });
                 this.loadingData = false;
@@ -67,5 +78,25 @@ export class LibraryComponent {
         });
         //event.field = Field to sort
         //event.order = Sort order
+    }
+    private loadGenres() {
+        this._libraryService.getGenres().subscribe(genres => {
+            this.genres = genres;
+        }, err => {
+            // Log errors if any
+            console.log(err);
+        });
+    }
+    private loadLanguages(): void {
+        this._libraryService.getLanguages()
+            .subscribe(langs => this.languages = langs.map((l) => { return { label: l, value: l }; }), //Bind to view
+            err => {
+                // Log errors if any
+                console.log(err);
+            });
+    }
+    ngOnInit(): void {
+        this.loadGenres();
+        this.loadLanguages();
     }
 }
