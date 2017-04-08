@@ -17,10 +17,11 @@ gulp.task('clean', (cb) => {
 /**
  * Lint all custom TypeScript files.
  */
+
 gulp.task('tslint', () => {
     return gulp.src("src/**/*.ts")
         .pipe(tslint({
-            formatter: 'prose'
+            formatter: 'verbose'
         }))
         .pipe(tslint.report());
 });
@@ -48,7 +49,7 @@ gulp.task("resources", () => {
 });
 
 gulp.task("font-awesome", () => {
-    return gulp.src(["font-awesome/css/**","font-awesome/fonts/**"], {
+    return gulp.src(["font-awesome/css/**", "font-awesome/fonts/**"], {
             cwd: "node_modules/**"
         })
         .pipe(gulp.dest("build/assets"));
@@ -62,7 +63,7 @@ gulp.task("font-awesome", () => {
 // });
 
 gulp.task("primeng", () => {
-    return gulp.src(["resources/themes/home/**", "resources/imag**/*", 
+    return gulp.src(["resources/themes/home/**", "resources/imag**/*",
             "resources/primeng.min.css"
         ], {
             cwd: "node_modules/primeng"
@@ -81,6 +82,7 @@ gulp.task("libs", () => {
             'rxjs/**/*.js',
             'zone.js/dist/**',
             '@angular/**/bundles/**',
+            'file-saver/FileSaver.js',
             // 'ng2-bootstrap/bundles/**',
             // 'ng2-select/**/*.js',
             'moment/min/moment-with-locales.js',
@@ -95,11 +97,11 @@ gulp.task("libs", () => {
 /**
  * Watch for changes in TypeScript, HTML and CSS files.
  */
-gulp.task('watch', function() {
-    gulp.watch(["src/**/*.ts"], ['compile']).on('change', function(e) {
+gulp.task('watch', () => {
+    gulp.watch(["src/**/*.ts"], ['compile']).on('change', (e) => {
         console.log('TypeScript file ' + e.path + ' has been changed. Compiling.');
     });
-    gulp.watch(["src/**/*.html", "src/**/*.css"], ['resources']).on('change', function(e) {
+    gulp.watch(["src/**/*.html", "src/**/*.css"], ['resources']).on('change', (e) => {
         console.log('Resource file ' + e.path + ' has been changed. Updating.');
     });
 });

@@ -27,7 +27,17 @@ export class LibraryService {
             .catch((error: any) => Observable.throw(error || 'Server error'));
 
     }
+    downloadBook(book: Book): Observable<any> {
+        const fileName: string = `${book.file}.${book.ext}.zip`;
+        const url = this.config.apiRootUrl + `library/books/download`;
+        // ...using get request
+        return this.http.post(url, { "folderName": book.path, "fileName": fileName, "count": 1 }, this._authService.httpDownloadOptions)
+            // ...and calling .json() on the response to return data
+            .map((res: Response) => res)
+            //...errors if any
+            .catch((error: any) => Observable.throw(error || 'Server error'));
 
+    }
     //     getAllSeries(lang: string, page: number): Observable<SeriesDataInfo> {
     //         const url = `${this.config.apiRootUrl}library/series/all/${page}/${lang}/40`;
     //         // ...using get request

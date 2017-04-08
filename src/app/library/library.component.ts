@@ -3,6 +3,8 @@ import {LibraryService} from './library.service';
 import { Author, Genre, Book, SearchQuery}  from './library.models';
 import { Observable } from 'rxjs/Observable';
 import {SelectItem} from 'primeng/primeng';
+import { Response } from '@angular/http';
+import * as saveAs from "file-saver";
 
 @Component({
     moduleId: module.id,
@@ -13,11 +15,38 @@ import {SelectItem} from 'primeng/primeng';
 export class LibraryComponent implements OnInit {
     private _topBarOpened: boolean = true;
     books: Book[] = [];
-    selectedBooks : Book[] = [];
+    selectedBooksFiles: number[] = [];
     genres: Genre[] = [];
     languages: SelectItem[] = [];
     loadingData: boolean = false;
     constructor(private _libraryService: LibraryService) {
+    }
+    private downloadZipFile(data: Response, fileName) {
+        let blob: Blob = data.blob();
+        saveAs(blob, fileName);
+    }
+
+    downloadBook(book: Book): void {
+        if (!book) {
+            return;
+        }
+        let book_file_name = (book.serno) ? book.serno + "." : "";
+        book_file_name = book_file_name + book.title + "." + book.ext + ".zip";
+        this._libraryService.downloadBook(book)
+            .subscribe(data => this.downloadZipFile(data, book_file_name), err => {
+                console.log(err);
+            });
+    }
+    private getBookInfo(file: number): Book {
+        if (!this.books.length) {
+            return null;
+        };
+
+        return this.books.find((item) => item.file === file);
+    }
+    getSelectedInfo(file: number): string {
+        let bi: Book = this.getBookInfo(file);
+        return bi ? `${bi.title} - ${bi.author}` : "";
     }
     onTogglePanelClicked() {
         this._topBarOpened = !this._topBarOpened;

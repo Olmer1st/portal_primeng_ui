@@ -1,5 +1,5 @@
 import { Injectable, Inject }     from '@angular/core';
-import { Http, Response, Headers, RequestOptions, RequestMethod } from '@angular/http';
+import { Http, Response, Headers, RequestOptions, RequestMethod, ResponseContentType } from '@angular/http';
 import { APP_CONFIG, AppConfig } from '../portal/portal.providers';
 import {Observable} from 'rxjs/Rx';
 import {User} from './shared.models';
@@ -34,6 +34,15 @@ export class AuthService {
         headers.append('Content-Type', 'application/json');
         headers.append('X-Access-Token', this.currentToken);
         let options = new RequestOptions({ headers: headers, withCredentials: false });
+
+        return options;
+    }
+    public get httpDownloadOptions(): RequestOptions {
+        let headers = new Headers();
+        headers.append('Accept', 'application/zip');
+        headers.append('Content-Type', 'application/json');
+        headers.append('X-Access-Token', this.currentToken);
+        let options = new RequestOptions({ headers: headers, withCredentials: false, responseType: ResponseContentType.Blob });
 
         return options;
     }

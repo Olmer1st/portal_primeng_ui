@@ -11,16 +11,45 @@
         <!-- Page content -->
         <!-- sortField="series"sortMode="multiple" [rowsPerPageOptions]="[10,20,50]" [rows]="20" [paginator]="true" [pageLinks]="5" -->
         <spinner-section *ngIf="loadingData"></spinner-section>
-        <p-dataTable [value]="books" *ngIf="!_topBarOpened" resizableColumns="true" reorderableColumns="true" columnResizeMode="fit" rowGroupMode="subheader" groupField="series" expandableRowGroups="true" [sortableRowGroup]="false" [(selection)]="selectedBooks" dataKey="file">
-            <p-header *ngIf="selectedBooks.length">
-                <label class="first">Selected books: {{selectedBooks.length}}</label>
-                <ul>
-                    <li *ngFor="let book of selectedBooks" style="text-align: left">{{book.title}}</li>
-                </ul>
+        <p-dataTable [value]="books" *ngIf="!_topBarOpened" resizableColumns="true" reorderableColumns="true" columnResizeMode="fit" rowGroupMode="subheader" groupField="series" expandableRowGroups="true" [sortableRowGroup]="false" dataKey="file">
+            <p-header *ngIf="selectedBooksFiles.length">
+                <div class="ui-grid  ui-grid-pad ui-fluid" style="margin-top: 20px">
+                    <div class="ui-grid-row" style="text-align:center;">
+                        <div class="ui-grid-col-1">
+                            <label class="first">Selected books: {{selectedBooksFiles.length}}</label>
+                        </div>
+                        <div class="ui-grid-col-1">
+                            <button pButton type="button" (click)="selectedBooksFiles=[]" label="Clear" icon="fa-eraser" style="width:150px;"></button>
+                        </div>
+                        <div class="ui-grid-col-1">
+                            <button pButton type="button" (click)="download($event)" label="Download" icon="fa-download" style="width:150px;"></button>
+                        </div>
+                    </div>
+                    <ul>
+                        <li *ngFor="let book of selectedBooksFiles" style="text-align: left;">
+                            <div class="ellipsis"> {{getSelectedInfo(book)}}</div>
+                        </li>
+                        <!-- <ng-container *ngIf="getBookInfo(book) as bookInfo">
+                                {{bookInfo?`${bookInfo.author} - ${bookInfo.title}`:""}}
+                            </ng-container> -->
+
+                    </ul>
+                </div>
             </p-header>
             <p-footer>Total books found: {{books.length}}</p-footer>
             <ng-template pTemplate="rowgroupheader" let-rowData>{{rowData.series}}</ng-template>
-            <p-column [style]="{'width':'38px'}" selectionMode="multiple" disabled="true">
+            <p-column [style]="{'width':'38px'}">
+                <ng-template let-node="rowData" pTemplate="body">
+                    <p-checkbox name="bookfiles" value="{{node.file}}" [(ngModel)]="selectedBooksFiles"></p-checkbox>
+                </ng-template>
+            </p-column>
+            <p-column [style]="{'width':'50px'}">
+                <ng-template pTemplate="header">
+                    <i class="fa fa-download" aria-hidden="true"></i>
+                </ng-template>
+                <ng-template let-node="rowData" pTemplate="body">
+                    <button pButton type="text" (click)="downloadBook(node)" icon="fa-download"></button>
+                </ng-template>
             </p-column>
             <p-column field="title" header="Title" [sortable]="false" [style]="{'width':'35%'}"></p-column>
             <p-column field="author" header="Author" [style]="{'width':'25%'}">
@@ -44,6 +73,7 @@
                     <span style="white-space: normal;">{{node.genre}}</span>
                 </ng-template>
             </p-column>
+
         </p-dataTable>
     </ng-sidebar-container>
 </div>

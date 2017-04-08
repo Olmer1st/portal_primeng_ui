@@ -11,7 +11,7 @@ import { SearchPanelComponent }  from '../library/searchpanel/searchpanel.compon
 import {PortalComponent} from './portal.component';
 import {HeaderComponent} from '../header/header.component';
 import {FooterComponent} from '../footer/footer.component';
-import { DataTableModule, DropdownModule, InputSwitchModule, PanelModule,
+import { DataTableModule, DropdownModule, InputSwitchModule, PanelModule, CheckboxModule,
     ButtonModule, SplitButtonModule, ToolbarModule, InputTextModule,
     PasswordModule, AutoCompleteModule, TreeTableModule, SharedModule} from 'primeng/primeng';
 import { SidebarModule } from 'ng-sidebar';
@@ -27,7 +27,7 @@ import {LibraryService} from '../library/library.service';
         CommonModule,
         FormsModule,
         PortalRoutes,
-        DataTableModule, InputSwitchModule, DropdownModule, PasswordModule,
+        DataTableModule, InputSwitchModule, DropdownModule, PasswordModule, CheckboxModule,
         PanelModule, ButtonModule, SplitButtonModule, ToolbarModule, InputTextModule, AutoCompleteModule, TreeTableModule, SharedModule,
         HttpModule,
         JsonpModule,

@@ -31,7 +31,7 @@
         "no-string-literal": false,
         "no-trailing-whitespace": true,
         "no-unused-variable": false,
-        "no-use-before-declare": true,
+        "no-use-before-declare": false,
         "one-line": [
             true,
             "check-open-brace",

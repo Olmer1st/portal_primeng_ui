@@ -29,7 +29,8 @@
             'angular-in-memory-web-api': 'npm:angular-in-memory-web-api',
             'moment': 'npm:moment/min/moment-with-locales.js',
             'primeng': 'npm:primeng',
-            'ng-sidebar': 'npm:ng-sidebar'
+            'ng-sidebar': 'npm:ng-sidebar',
+            'file-saver': 'npm:file-saver'
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {
@@ -49,6 +50,10 @@
             },
             'ng-sidebar': {
                 main: 'lib/index',
+                defaultExtension: 'js'
+            },
+            'file-saver': {
+                main: 'FileSaver',
                 defaultExtension: 'js'
             }
         }

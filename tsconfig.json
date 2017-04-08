@@ -2,6 +2,12 @@
     "compilerOptions": {
         "outDir": "build/app",
         "target": "es5",
+        "lib": [
+            "dom",
+            "dom.iterable",
+            "es2016",
+            "scripthost"
+        ],
         "module": "commonjs",
         "moduleResolution": "node",
         "sourceMap": true,
