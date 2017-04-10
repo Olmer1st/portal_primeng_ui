@@ -15,7 +15,8 @@ import * as saveAs from "file-saver";
 export class LibraryComponent implements OnInit {
     private _topBarOpened: boolean = true;
     books: Book[] = [];
-    selectedBooksFiles: number[] = [];
+    selectedBooks: Book[] = [];
+    // selectedBooksFiles: number[] = [];
     genres: Genre[] = [];
     languages: SelectItem[] = [];
     loadingData: boolean = false;
@@ -44,9 +45,8 @@ export class LibraryComponent implements OnInit {
 
         return this.books.find((item) => item.file === file);
     }
-    getSelectedInfo(file: number): string {
-        let bi: Book = this.getBookInfo(file);
-        return bi ? `${bi.title} - ${bi.author}` : "";
+    getSelectedInfo(book: Book): string {
+        return book ? `${book.title} - ${book.author}` : "";
     }
     onTogglePanelClicked() {
         this._topBarOpened = !this._topBarOpened;

@@ -18,3 +18,8 @@
     overflow: hidden;
     margin: auto !important;
 }
+
+:host /deep/ .ui-datatable thead.ui-datatable-thead .ui-chkbox-box{
+    display:none;
+}
+/*p-datatable thead.ui-datatable-thead p-dtcheckbox {}*/
