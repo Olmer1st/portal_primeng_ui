@@ -18,6 +18,7 @@ export interface Book {
     date: string;
     ext: string;
     genre: string;
+    isDownloading:boolean;
 }
 
 

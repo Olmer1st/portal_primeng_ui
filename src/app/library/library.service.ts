@@ -31,7 +31,26 @@ export class LibraryService {
         const fileName: string = `${book.file}.${book.ext}.zip`;
         const url = this.config.apiRootUrl + `library/books/download`;
         // ...using get request
-        return this.http.post(url, { "folderName": book.path, "fileName": fileName, "count": 1 }, this._authService.httpDownloadOptions)
+        return this.http.post(url, { "folderName": book.path, "fileName": fileName}, this._authService.httpDownloadOptions)
+            // ...and calling .json() on the response to return data
+            .map((res: Response) => res)
+            //...errors if any
+            .catch((error: any) => Observable.throw(error || 'Server error'));
+
+    }
+
+    downloadBooks(books: Book[] = [], fileName = ""): Observable<any> {
+        const url = this.config.apiRootUrl + `library/books/download`;
+        let paths = books.map(book => {
+            return `/${book.path}/${book.file}.${book.ext}.zip`;
+        });
+
+        // ...using get request
+        return this.http.post(url, {
+            "bookPaths": paths,
+            "count": books.length,
+            "fileName": fileName
+        }, this._authService.httpDownloadOptions)
             // ...and calling .json() on the response to return data
             .map((res: Response) => res)
             //...errors if any

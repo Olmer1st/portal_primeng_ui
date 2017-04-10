@@ -31,7 +31,10 @@
                             <button pButton type="button" (click)="selectedBooks=[]" label="Clear" icon="fa-eraser" style="width:150px;"></button>
                         </div>
                         <div class="ui-grid-col-1">
-                            <button pButton type="button" (click)="download($event)" label="Download" icon="fa-download" style="width:150px;"></button>
+                            <button pButton type="button" [disabled]="selectedBooksDownloading" (click)="downloadBooks()" label="Download" icon="fa-download" style="width:150px;"></button>
+                        </div>
+                        <div style="margin-left:5px;">
+                            <img *ngIf="selectedBooksDownloading" src="assets/media/loading_large_icon.gif" style="width:30px;height:auto;"/>
                         </div>
                     </div>
                 </div>
@@ -44,7 +47,8 @@
                     <i class="fa fa-download" aria-hidden="true"></i>
                 </ng-template>
                 <ng-template let-node="rowData" pTemplate="body">
-                    <button pButton type="text" (click)="downloadBook(node)" icon="fa-download"></button>
+                    <button *ngIf="!node.isDownloading" pButton type="text" (click)="downloadBook(node)" icon="fa-download"></button>
+                    <img *ngIf="node.isDownloading" src="assets/media/loading_large_icon.gif" style="width:30px;height:auto;"/>
                 </ng-template>
             </p-column>
             <p-column field="title" header="Title" [sortable]="false" [style]="{'width':'35%'}"></p-column>

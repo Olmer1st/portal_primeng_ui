@@ -16,13 +16,16 @@ export class LibraryComponent implements OnInit {
     private _topBarOpened: boolean = true;
     books: Book[] = [];
     selectedBooks: Book[] = [];
-    // selectedBooksFiles: number[] = [];
+    selectedBooksDownloading:boolean = false;
     genres: Genre[] = [];
     languages: SelectItem[] = [];
     loadingData: boolean = false;
     constructor(private _libraryService: LibraryService) {
     }
     private downloadZipFile(data: Response, fileName) {
+        if (!data.ok) {
+            return;
+        }
         let blob: Blob = data.blob();
         saveAs(blob, fileName);
     }
@@ -31,10 +34,15 @@ export class LibraryComponent implements OnInit {
         if (!book) {
             return;
         }
+        book.isDownloading = true;
         let book_file_name = (book.serno) ? book.serno + "." : "";
         book_file_name = book_file_name + book.title + "." + book.ext + ".zip";
         this._libraryService.downloadBook(book)
-            .subscribe(data => this.downloadZipFile(data, book_file_name), err => {
+            .subscribe(data => {
+                book.isDownloading = false;
+                this.downloadZipFile(data, book_file_name);
+            }, err => {
+                book.isDownloading = false;
                 console.log(err);
             });
     }
@@ -45,8 +53,18 @@ export class LibraryComponent implements OnInit {
 
         return this.books.find((item) => item.file === file);
     }
-    getSelectedInfo(book: Book): string {
-        return book ? `${book.title} - ${book.author}` : "";
+    downloadBooks() {
+        let tmstamp = new Date().getTime();
+        let fileName = `download_${tmstamp}.zip`;
+        this.selectedBooksDownloading = true;
+        this._libraryService.downloadBooks(this.selectedBooks, fileName)
+            .subscribe(data => {
+                this.selectedBooksDownloading = false;
+                this.downloadZipFile(data, fileName);
+            }, err => {
+                this.selectedBooksDownloading = false;
+                console.log(err);
+            });
     }
     onTogglePanelClicked() {
         this._topBarOpened = !this._topBarOpened;
