@@ -1,8 +1,7 @@
 # portal_primeng_ui
-portal ui  with latest angular 2 based pure primeng
+portal ui  with latest angular4 aka angular2 based pure primeng
+with systemjs, without Angular CLI
 
-# portal_ui
-Angular 2 UI for Portal CMS
 
 #production build
 npm run clean & npm run build
