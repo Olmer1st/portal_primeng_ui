@@ -12,7 +12,7 @@
                 <input type="password" pPassword [(ngModel)]="userPassword"  class="input_standard" [feedback]="false"/>
                 <button pButton type="button" label="Login"  icon="fa-sign-in" (click)="login()"></button>
             </span>
-            <p-splitButton *ngIf="currentUser" label="{{wellcomeTitle}}" icon="fa-user-o" class="ui-button-success" appendTo="body"  [model]="items"></p-splitButton>
+            <p-splitButton *ngIf="currentUser" label="{{wellcomeTitle}}" icon="fa-user-o" appendTo="body"  [model]="items"></p-splitButton>
             <!-- <span >{{}}</span> -->
             <button pButton type="button"  *ngIf="isVisible('admin')" label="Admin" (click)="navigate('/admin', $event)" [ngClass]="(!isActive('/admin')?'ui-button-secondary':'')"></button>
         </div>

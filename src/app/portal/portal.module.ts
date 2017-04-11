@@ -8,10 +8,12 @@ import { HttpModule, JsonpModule } from '@angular/http';
 import { SearchboxComponent } from '../shared/searchbox/searchbox.component';
 import { SpinnerComponent }  from '../shared/spinner/spinner.component';
 import { SearchPanelComponent }  from '../library/searchpanel/searchpanel.component';
+import { UserComponent }  from '../admin/user/user.component';
+import { UsersComponent }  from '../admin/users/users.component';
 import {PortalComponent} from './portal.component';
 import {HeaderComponent} from '../header/header.component';
 import {FooterComponent} from '../footer/footer.component';
-import { DataTableModule, DropdownModule, InputSwitchModule, PanelModule, CheckboxModule,
+import { DataTableModule, DropdownModule, InputSwitchModule, PanelModule, CheckboxModule, DialogModule,
     ButtonModule, SplitButtonModule, ToolbarModule, InputTextModule,
     PasswordModule, AutoCompleteModule, TreeTableModule, SharedModule} from 'primeng/primeng';
 import { SidebarModule } from 'ng-sidebar';
@@ -19,7 +21,7 @@ import {PortalRoutes, routedComponents} from './portal.routes';
 import {APP_CONFIG, PORTAL_CONFIG} from './portal.providers';
 import { FileSizePipe } from '../shared/filesize.pipe';
 import {LibraryService} from '../library/library.service';
-
+import {AdminService} from '../admin/admin.service';
 @NgModule({
     imports: [
         BrowserModule,
@@ -27,7 +29,7 @@ import {LibraryService} from '../library/library.service';
         CommonModule,
         FormsModule,
         PortalRoutes,
-        DataTableModule, InputSwitchModule, DropdownModule, PasswordModule, CheckboxModule,
+        DataTableModule, InputSwitchModule, DropdownModule, PasswordModule, CheckboxModule, DialogModule,
         PanelModule, ButtonModule, SplitButtonModule, ToolbarModule, InputTextModule, AutoCompleteModule, TreeTableModule, SharedModule,
         HttpModule,
         JsonpModule,
@@ -41,11 +43,14 @@ import {LibraryService} from '../library/library.service';
         SearchPanelComponent,
         SearchboxComponent,
         SpinnerComponent,
-        FileSizePipe
+        FileSizePipe,
+        UserComponent,
+        UsersComponent
     ],
     providers: [
         { provide: APP_CONFIG, useValue: PORTAL_CONFIG },
         LibraryService,
+        AdminService
     ],
     bootstrap: [PortalComponent]
 })

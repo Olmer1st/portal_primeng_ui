@@ -6,4 +6,11 @@ export interface User {
     locked:boolean;
     modules:string[];
     token:string;
+    password:string;
+}
+
+export interface Module {
+    mid:string;
+    name:string;
+    title:string;
 }

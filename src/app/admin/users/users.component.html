@@ -1,0 +1,42 @@
+<p-dialog header="User" [(visible)]="dialogDisplay" modal="modal" width="300" responsive="true" appendTo="body" [draggable]="false">
+        <p></p>
+        <p-footer>
+            <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+                <button type="button" pButton icon="fa-close" (click)="dialogDisplay=false" label="Cancel" class="ui-button-info"></button>
+                <button type="button" pButton icon="fa-check" (click)="save()" label="Save"></button>
+            </div>
+        </p-footer>
+</p-dialog>
+<p-dataTable [value]="users" dataKey="uid">
+    <p-header>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-1" style="margin-top:5px;">
+                    <label class="first">Users</label>
+                </div>
+                <div class="ui-grid-col-1">
+                    <button pButton type="button" icon="fa-user-plus" (click)="newUser()" iconPos="left" label="Add new user"></button>
+                </div>
+            </div>
+    </p-header>
+    <p-column field="uid" header="Id"  [style]="{'width':'150px'}">
+        <ng-template let-node="rowData" pTemplate="body">
+            <div class="float-left" style="margin-top: 5px;">
+                <strong>{{node.uid}}</strong>
+            </div>
+            <button pButton type="button" icon="fa-trash" class="float-right"></button>
+            <button pButton type="button" icon="fa-pencil-square-o" (click)="edit(node)" class="float-right"></button>
+            <div class="clearfix"></div>
+        </ng-template>
+    </p-column>
+    <p-column field="email" header="Email"></p-column>
+    <p-column field="display" header="Display Name"></p-column>
+    <p-column field="role" header="Role"></p-column>
+    <p-column [style]="{'width':'50px'}">
+        <ng-template pTemplate="header" >
+            <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+        </ng-template>
+        <ng-template let-node="rowData" pTemplate="body">
+            <button pButton type="text" (click)="lockUser(node)" icon="{{!node.locked?'fa-ban':'fa-unlock'}}"></button>
+        </ng-template>
+    </p-column>
+</p-dataTable>
