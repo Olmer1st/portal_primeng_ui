@@ -1,0 +1,39 @@
+<p-dialog header="Module" [(visible)]="dialogDisplay" width="500" modal="modal" responsive="true" appendTo="body" [draggable]="true" showEffect="fade">
+    <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="selectedModule">
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><label>Name:</label></div>
+            <div class="ui-grid-col-8"><input pInputText  [(ngModel)]="selectedModule.name" /></div>
+        </div>
+        <br />
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><label>Display Name:</label></div>
+            <div class="ui-grid-col-8"><input pInputText  [(ngModel)]="selectedModule.title" /></div>
+        </div>
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+            <button type="button" pButton icon="fa-close" (click)="dialogDisplay=false" label="Cancel" class="ui-button-info"></button>
+            <button type="button" pButton icon="fa-check" (click)="save()" label="Save"></button>
+        </div>
+    </p-footer>
+</p-dialog>
+<p-dataTable [value]="modules" dataKey="mid" [paginator]="true" rows="10" [responsive]="true">
+    <p-header>Modules</p-header>
+    <p-column field="mid" header="Id" [style]="{'width':'150px'}">
+        <ng-template let-node="rowData" pTemplate="body">
+            <div class="float-left" style="margin-top: 5px;">
+                <strong>{{node.mid}}</strong>
+            </div>
+            <button pButton type="button" icon="fa-trash" class="float-right" (click)="delete(node)"></button>
+            <button pButton type="button" icon="fa-pencil-square-o" (click)="edit(node)" class="float-right"></button>
+            <div class="clearfix"></div>
+        </ng-template>
+    </p-column>
+    <p-column field="name" header="Name"></p-column>
+    <p-column field="title" header="Display Name"></p-column>
+    <p-footer>
+        <div class="ui-helper-clearfix" style="width:100%">
+            <button pButton type="button" icon="fa-plus" style="float:left" (click)="newModule()" iconPos="left" label="Add new module"></button>
+        </div>
+    </p-footer>
+</p-dataTable>

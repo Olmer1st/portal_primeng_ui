@@ -1,4 +1,4 @@
-export interface User {
+export interface IUser {
     uid:string;
     email:string;
     display:string;
@@ -7,10 +7,12 @@ export interface User {
     modules:string[];
     token:string;
     password:string;
+    error?:string;
 }
 
-export interface Module {
+export interface IModule {
     mid:string;
     name:string;
     title:string;
+    error?:string;
 }

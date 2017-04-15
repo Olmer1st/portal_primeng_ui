@@ -2,6 +2,7 @@ export interface Genre {
     code: string;
     gdesc: string;
     edesc: string;
+    error?:string;
 }
 
 
@@ -18,13 +19,15 @@ export interface Book {
     date: string;
     ext: string;
     genre: string;
-    isDownloading:boolean;
+    isDownloading?:boolean;
+    error?:string;
 }
 
 
 export interface Author {
     key: string;
     display: string;
+    error?:string;
 }
 
 export interface SearchQuery {

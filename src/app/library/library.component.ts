@@ -49,7 +49,7 @@ export class LibraryComponent implements OnInit {
     private getBookInfo(file: number): Book {
         if (!this.books.length) {
             return null;
-        };
+        }
 
         return this.books.find((item) => item.file === file);
     }

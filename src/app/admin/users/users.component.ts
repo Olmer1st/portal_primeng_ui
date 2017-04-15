@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {AdminService} from '../admin.service';
-import {User} from '../../shared/shared.models';
+import {IUser, IModule} from '../../shared/shared.models';
 
 @Component({
     moduleId: module.id,
@@ -8,9 +8,11 @@ import {User} from '../../shared/shared.models';
     templateUrl: "users.component.html"
 })
 export class UsersComponent implements OnInit {
-    users: User[] = [];
+    @Input()
+    modules: IModule[] = [];
+    users: IUser[] = [];
     dialogDisplay: boolean = false;
-    selectedUser: User = null;
+    selectedUser: IUser = null;
     constructor(private _adminService: AdminService) {
 
     }
@@ -22,7 +24,7 @@ export class UsersComponent implements OnInit {
         this.dialogDisplay = false;
     }
 
-    edit(user: User) {
+    edit(user: IUser) {
         this.selectedUser = user;
         this.dialogDisplay = true;
     }

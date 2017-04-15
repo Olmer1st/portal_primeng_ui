@@ -1,1 +1,6 @@
-<users></users>
+<spinner-section *ngIf="loadingData"></spinner-section>
+<div class="relative" *ngIf="!loadingData">
+    <modules [modules]="modules"></modules>
+    <br />
+    <users [modules]="modules"></users>
+</div>

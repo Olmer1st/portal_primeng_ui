@@ -8,8 +8,9 @@ import { HttpModule, JsonpModule } from '@angular/http';
 import { SearchboxComponent } from '../shared/searchbox/searchbox.component';
 import { SpinnerComponent }  from '../shared/spinner/spinner.component';
 import { SearchPanelComponent }  from '../library/searchpanel/searchpanel.component';
-import { UserComponent }  from '../admin/user/user.component';
+import { UserComponent }  from '../shared/user/user.component';
 import { UsersComponent }  from '../admin/users/users.component';
+import { ModulesComponent }  from '../admin/modules/modules.component';
 import {PortalComponent} from './portal.component';
 import {HeaderComponent} from '../header/header.component';
 import {FooterComponent} from '../footer/footer.component';
@@ -45,7 +46,8 @@ import {AdminService} from '../admin/admin.service';
         SpinnerComponent,
         FileSizePipe,
         UserComponent,
-        UsersComponent
+        UsersComponent,
+        ModulesComponent
     ],
     providers: [
         { provide: APP_CONFIG, useValue: PORTAL_CONFIG },

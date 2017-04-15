@@ -2,7 +2,7 @@ import { Injectable, Inject }     from '@angular/core';
 import { Http, Response, Headers, RequestOptions, RequestMethod, ResponseContentType } from '@angular/http';
 import { APP_CONFIG, AppConfig } from '../portal/portal.providers';
 import {Observable} from 'rxjs/Rx';
-import {User} from './shared.models';
+import {IUser} from './shared.models';
 //
 // Import RxJs required methods
 import 'rxjs/add/operator/map';
@@ -12,7 +12,7 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class AuthService {
-    public currentUser: User = null;
+    public currentUser: IUser = null;
     private currentToken: string = null;
     public isAuthenticated: boolean = false;
     public isAuthorizedToSee(moduleName: string, roles: string[] = []): boolean {
@@ -69,7 +69,7 @@ export class AuthService {
             })
             .first();
     }
-    private authorization(userEmail: string, userPassword: string): Observable<User> {
+    private authorization(userEmail: string, userPassword: string): Observable<IUser> {
         // return Observable.of(true).delay(1000).do(val => this.isLoggedIn = true);
         const url = this.config.apiRootUrl + `public/login/${userEmail}/${userPassword}`;
         // ...using get request
@@ -79,7 +79,7 @@ export class AuthService {
             //...errors if any
             .catch((error: any) => Observable.throw(error || 'Server error'));
     }
-    private authenticate(token: string): Observable<User> {
+    private authenticate(token: string): Observable<IUser> {
         // return Observable.of(true).delay(1000).do(val => this.isLoggedIn = true);
         const url = this.config.apiRootUrl + `public/authenticate`;
         // ...using get request
