@@ -8,16 +8,23 @@
         <div class="ui-grid-col-4"><label>Password:</label></div>
         <div class="ui-grid-col-8"><input pInputText  [(ngModel)]="user.password" /></div>
     </div>
+    <br />
     <div class="ui-grid-row">
         <div class="ui-grid-col-4"><label>Display Name:</label></div>
         <div class="ui-grid-col-8"><input pInputText  [(ngModel)]="user.display" /></div>
     </div>
+    <br />
     <div class="ui-grid-row">
         <div class="ui-grid-col-4"><label>Role:</label></div>
-        <div class="ui-grid-col-8"><input pInputText  [(ngModel)]="user.role" /></div>
+        <p-dropdown [options]="roles" [(ngModel)]="user.role"></p-dropdown>
     </div>
+    <br />
     <div class="ui-grid-row">
         <div class="ui-grid-col-4"><label>Modules:</label></div>
         <div class="ui-grid-col-8"><input pInputText  [(ngModel)]="user.modules" /></div>
     </div>
+</div>
+<div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+    <button type="button" pButton icon="fa-close" (click)="dialogDisplay=false" label="Cancel" class="ui-button-info"></button>
+    <button type="button" pButton icon="fa-check" (click)="save()" label="Save"></button>
 </div>

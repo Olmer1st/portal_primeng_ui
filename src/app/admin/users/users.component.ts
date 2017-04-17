@@ -1,7 +1,7 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {AdminService} from '../admin.service';
 import {IUser, IModule} from '../../shared/shared.models';
-
+import {User} from '../../shared/user/user.component';
 @Component({
     moduleId: module.id,
     selector: "users",
@@ -17,7 +17,7 @@ export class UsersComponent implements OnInit {
 
     }
     newUser() {
-        this.selectedUser = null;
+        this.selectedUser = new User();
         this.dialogDisplay = true;
     }
     save() {
@@ -25,7 +25,9 @@ export class UsersComponent implements OnInit {
     }
 
     edit(user: IUser) {
-        this.selectedUser = user;
+        let cU = User.clone(user);
+        delete cU.password;
+        this.selectedUser = cU;
         this.dialogDisplay = true;
     }
     private loadUsers() {

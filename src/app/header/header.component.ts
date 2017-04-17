@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import {AuthService} from '../shared/auth.service';
 import {MenuModule, MenuItem} from 'primeng/primeng';
+import {Message} from 'primeng/primeng';
 
 @Component({
     moduleId: module.id,
@@ -9,6 +10,8 @@ import {MenuModule, MenuItem} from 'primeng/primeng';
     templateUrl: "header.component.html"
 })
 export class HeaderComponent implements OnInit {
+    errMsgs: Message[] = [];
+    loginInProcess:boolean = false;
     userEmail: string = null;
     userPassword: string = null;
     private items: MenuItem[];
@@ -40,7 +43,16 @@ export class HeaderComponent implements OnInit {
     }
 
     login() {
-        this._authService.login(this.userEmail, this.userPassword);
+        this.loginInProcess = true;
+        this._authService.login(this.userEmail, this.userPassword, (user) => {
+            this.loginInProcess = false;
+            if (user && user.error) {
+                this.errMsgs = [];
+                this.errMsgs.push({ severity: 'error', summary: 'Error Message', detail: user.error });
+            }
+
+        });
+
     }
     ngOnInit() {
         this.items = [

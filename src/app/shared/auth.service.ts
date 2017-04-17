@@ -16,7 +16,7 @@ export class AuthService {
     private currentToken: string = null;
     public isAuthenticated: boolean = false;
     public isAuthorizedToSee(moduleName: string, roles: string[] = []): boolean {
-        if (this.currentUser) {
+        if (this.currentUser && this.currentUser.modules) {
             if (roles.length) {
                 if (roles.includes(this.currentUser.role)) {
                     return this.currentUser.modules.includes(moduleName) || this.currentUser.role === 'admin';
@@ -47,7 +47,9 @@ export class AuthService {
         return options;
     }
     constructor(private http: Http, @Inject(APP_CONFIG) private config: AppConfig) {
-        this.makeAuthenticated().subscribe(res => this.isAuthenticated = res, err => {
+        this.makeAuthenticated().subscribe(res => {
+                this.isAuthenticated = res;
+            }, err => {
             // Log errors if any
             console.log(err);
         });
@@ -55,12 +57,17 @@ export class AuthService {
 
     makeAuthenticated(): Observable<boolean> {
         this.currentToken = localStorage.getItem(this.config.settings.sessionId);
+        if (!this.currentToken) {
+            return Observable.empty<boolean>();
+        }
         return this.authenticate(this.currentToken)
             .map(user => {
-                if (user) {
+                if (user && !user.error) {
                     this.isAuthenticated = true;
                     this.currentUser = user;
                     return true;
+                } else {
+                    console.error(user);
                 }
                 this.isAuthenticated = false;
                 this.currentUser = null;
@@ -93,12 +100,17 @@ export class AuthService {
                 return Observable.throw(error || 'Server error');
             });
     }
-    login(userEmail: string, userPassword: string): void {
+    login(userEmail: string, userPassword: string, cbFn = null): void {
         this.authorization(userEmail, userPassword)
             .subscribe(user => {
-                this.currentUser = user;
-                localStorage.setItem(this.config.settings.sessionId, user.token);
-                this.currentToken = user.token;
+                if (user && !user.error) {
+                    this.currentUser = user;
+                    localStorage.setItem(this.config.settings.sessionId, user.token);
+                    this.currentToken = user.token;
+                }
+                if (cbFn) {
+                    cbFn(user);
+                }
             }, //Bind to view
             err => {
                 // Log errors if any

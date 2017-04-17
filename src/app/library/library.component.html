@@ -24,7 +24,7 @@
                         </li>
                     </ul>
                     <div class="ui-grid-row">
-                        <div class="ui-grid-col-1" style="margin-top:5px;">
+                        <div class="ui-grid-col-2" style="margin-top:5px;">
                             <label class="first">Selected books: {{selectedBooks.length}}</label>
                         </div>
                         <div class="ui-grid-col-1">
@@ -33,7 +33,7 @@
                         <div class="ui-grid-col-1">
                             <button pButton type="button" [disabled]="selectedBooksDownloading" (click)="downloadBooks()" label="Download" icon="fa-download" style="width:150px;"></button>
                         </div>
-                        <div style="margin-left:5px;">
+                        <div style="margin-left:15px;">
                             <img *ngIf="selectedBooksDownloading" src="assets/media/loading_large_icon.gif" style="width:30px;height:auto;"/>
                         </div>
                     </div>

@@ -7,10 +7,10 @@ export interface AppConfig {
 }
 
 export const PORTAL_CONFIG: AppConfig = {
-    apiRootUrl: "http://localhost:5000/v1/",
+    apiRootUrl: (location.hostname === 'localhost') ? "http://localhost:5000/v1/" : "/v1/",
     title: 'Dependency Injection',
-    settings:{
-        sessionId:"X-Auth-Token"
+    settings: {
+        sessionId: "X-Auth-Token"
     }
 };
 

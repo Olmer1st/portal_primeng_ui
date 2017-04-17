@@ -1,11 +1,5 @@
-<p-dialog header="User" [(visible)]="dialogDisplay" modal="modal" width="300" responsive="true" appendTo="body" [draggable]="false" showEffect="fade">
-        <p></p>
-        <p-footer>
-            <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
-                <button type="button" pButton icon="fa-close" (click)="dialogDisplay=false" label="Cancel" class="ui-button-info"></button>
-                <button type="button" pButton icon="fa-check" (click)="save()" label="Save"></button>
-            </div>
-        </p-footer>
+<p-dialog header="User" [(visible)]="dialogDisplay" modal="modal" width="500" responsive="true" appendTo="body" [draggable]="true" showEffect="fade">
+        <user [user]="selectedUser"></user>
 </p-dialog>
 <p-dataTable [value]="users" dataKey="uid" [paginator]="true" rows="10" [responsive]="true">
     <p-header>Users</p-header>

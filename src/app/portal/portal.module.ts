@@ -14,8 +14,8 @@ import { ModulesComponent }  from '../admin/modules/modules.component';
 import {PortalComponent} from './portal.component';
 import {HeaderComponent} from '../header/header.component';
 import {FooterComponent} from '../footer/footer.component';
-import { DataTableModule, DropdownModule, InputSwitchModule, PanelModule, CheckboxModule, DialogModule,
-    ButtonModule, SplitButtonModule, ToolbarModule, InputTextModule,
+import { DataTableModule, DropdownModule, InputSwitchModule, PanelModule, CheckboxModule, DialogModule, GrowlModule,
+    ButtonModule, SplitButtonModule, ToolbarModule, InputTextModule, MultiSelectModule,
     PasswordModule, AutoCompleteModule, TreeTableModule, SharedModule} from 'primeng/primeng';
 import { SidebarModule } from 'ng-sidebar';
 import {PortalRoutes, routedComponents} from './portal.routes';
@@ -30,7 +30,7 @@ import {AdminService} from '../admin/admin.service';
         CommonModule,
         FormsModule,
         PortalRoutes,
-        DataTableModule, InputSwitchModule, DropdownModule, PasswordModule, CheckboxModule, DialogModule,
+        DataTableModule, InputSwitchModule, DropdownModule, PasswordModule, CheckboxModule, DialogModule, GrowlModule, MultiSelectModule,
         PanelModule, ButtonModule, SplitButtonModule, ToolbarModule, InputTextModule, AutoCompleteModule, TreeTableModule, SharedModule,
         HttpModule,
         JsonpModule,

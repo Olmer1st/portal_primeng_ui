@@ -1,3 +1,4 @@
+<p-growl [value]="errMsgs" sticky="sticky"></p-growl>
 <header class="header">
     <p-toolbar>
         <div class="ui-toolbar-group-left">
@@ -11,6 +12,7 @@
                 <label class="first">password:</label>
                 <input type="password" pPassword [(ngModel)]="userPassword"  class="input_standard" [feedback]="false"/>
                 <button pButton type="button" label="Login"  icon="fa-sign-in" (click)="login()"></button>
+                <img  *ngIf="loginInProcess" src="assets/media/loading_large_icon.gif" style="width:16px;height:auto;"/>
             </span>
             <p-splitButton *ngIf="currentUser" label="{{wellcomeTitle}}" icon="fa-user-o" appendTo="body"  [model]="items"></p-splitButton>
             <!-- <span >{{}}</span> -->
