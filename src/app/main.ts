@@ -2,7 +2,8 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { PortalModule } from './portal/portal.module';
 import { enableProdMode } from '@angular/core';
-
-enableProdMode();
+if (location.hostname !== 'localhost') {
+    enableProdMode();
+}
 const platform = platformBrowserDynamic();
 platform.bootstrapModule(PortalModule);
