@@ -49,6 +49,17 @@ export class AdminService {
 
     }
 
+    lockUser(uid: string, lock: number): Observable<any> {
+        const url = this.config.apiRootUrl + `admin/users/${uid}/${lock}`;
+        // ...using get request
+        return this.http.put(url, {}, this._authService.httpOptions)
+            // ...and calling .json() on the response to return data
+            .map((res: Response) => res.json())
+            //...errors if any
+            .catch((error: any) => Observable.throw(error || 'Server error'));
+
+    }
+
     modifyModule(me: IModule): Observable<IModule> {
         const url = this.config.apiRootUrl + "admin/modules";
         // ...using get request
@@ -58,7 +69,15 @@ export class AdminService {
             //...errors if any
             .catch((error: any) => Observable.throw(error || 'Server error'));
     }
-
+    modifyUser(user: IUser): Observable<IUser> {
+        const url = this.config.apiRootUrl + "admin/users";
+        // ...using get request
+        return this.http.post(url, { user: user }, this._authService.httpOptions)
+            // ...and calling .json() on the response to return data
+            .map((res: Response) => res.json())
+            //...errors if any
+            .catch((error: any) => Observable.throw(error || 'Server error'));
+    }
     deleteModule(mid: string): Observable<any> {
         const url = this.config.apiRootUrl + "admin/modules/" + mid;
         // ...using get request

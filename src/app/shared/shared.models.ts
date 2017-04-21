@@ -3,7 +3,7 @@ export interface IUser {
     email:string;
     display:string;
     role:string;
-    locked:boolean;
+    locked:string;
     modules:string[];
     token:string;
     password:string;

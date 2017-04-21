@@ -1,5 +1,5 @@
-<p-dialog header="User" [(visible)]="dialogDisplay" modal="modal" width="500" responsive="true" appendTo="body" [draggable]="true" showEffect="fade">
-        <user [user]="selectedUser"></user>
+<p-dialog header="User" [(visible)]="dialogDisplay" modal="modal" width="500" height="400" responsive="true" appendTo="body" [draggable]="true" showEffect="fade">
+        <user [user]="selectedUser" [modules]="modules" (onCancelClicked)="onCancelClicked()" (onSaveClicked)="onSaveClicked($event)"></user>
 </p-dialog>
 <p-dataTable [value]="users" dataKey="uid" [paginator]="true" rows="10" [responsive]="true">
     <p-header>Users</p-header>
@@ -8,7 +8,7 @@
             <div class="float-left" style="margin-top: 5px;">
                 <strong>{{node.uid}}</strong>
             </div>
-            <button pButton type="button" icon="fa-trash" class="float-right"></button>
+            <button pButton type="button" icon="fa-trash" class="float-right" (click)="delete(node)"></button>
             <button pButton type="button" icon="fa-pencil-square-o" (click)="edit(node)" class="float-right"></button>
             <div class="clearfix"></div>
         </ng-template>
@@ -16,13 +16,17 @@
     <p-column field="email" header="Email"></p-column>
     <p-column field="display" header="Display Name"></p-column>
     <p-column field="role" header="Role"></p-column>
-    <p-column field="modules" header="Modules"></p-column>
+    <p-column field="modules" header="Modules">
+        <ng-template let-node="rowData" pTemplate="body">
+            {{translateModules(node.modules)}}
+        </ng-template>
+    </p-column>
     <p-column [style]="{'width':'50px'}">
         <ng-template pTemplate="header" >
             <i class="fa fa-unlock-alt" aria-hidden="true"></i>
         </ng-template>
         <ng-template let-node="rowData" pTemplate="body">
-            <button pButton type="text" (click)="lockUser(node)" icon="{{!node.locked?'fa-ban':'fa-unlock'}}"></button>
+            <button pButton type="text" (click)="lockUser(node)" icon="{{!(node.locked ==='0')?'fa-ban':'fa-unlock'}}"></button>
         </ng-template>
     </p-column>
      <p-footer>

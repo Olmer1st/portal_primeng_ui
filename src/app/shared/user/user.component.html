@@ -1,17 +1,31 @@
 <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="user">
     <div class="ui-grid-row">
         <div class="ui-grid-col-4"><label>Email:</label></div>
-        <div class="ui-grid-col-8"><input pInputText  [(ngModel)]="user.email" /></div>
+        <div class="ui-grid-col-8"><input pInputText [(ngModel)]="user.email" [disabled]="isEmailDisabled" /></div>
     </div>
+
+    <span  *ngIf="user.role !='admin'">
+        <br />
+        <div class="ui-grid-row">
+
+            <div class="ui-grid-col-4"><label>Modules:</label></div>
+            <div class="ui-grid-col-8">
+                <p-multiSelect [options]="userModules" [(ngModel)]="user.modules" [overlayVisible]="true"></p-multiSelect>
+            </div>
+        </div>
+    </span>
+
     <br />
     <div class="ui-grid-row">
         <div class="ui-grid-col-4"><label>Password:</label></div>
-        <div class="ui-grid-col-8"><input pInputText  [(ngModel)]="user.password" /></div>
+        <div class="ui-grid-col-8">
+            <input type="password" pPassword [(ngModel)]="user.password" [feedback]="false" />
+        </div>
     </div>
     <br />
     <div class="ui-grid-row">
         <div class="ui-grid-col-4"><label>Display Name:</label></div>
-        <div class="ui-grid-col-8"><input pInputText  [(ngModel)]="user.display" /></div>
+        <div class="ui-grid-col-8"><input pInputText [(ngModel)]="user.display" /></div>
     </div>
     <br />
     <div class="ui-grid-row">
@@ -19,12 +33,9 @@
         <p-dropdown [options]="roles" [(ngModel)]="user.role"></p-dropdown>
     </div>
     <br />
-    <div class="ui-grid-row">
-        <div class="ui-grid-col-4"><label>Modules:</label></div>
-        <div class="ui-grid-col-8"><input pInputText  [(ngModel)]="user.modules" /></div>
-    </div>
+
 </div>
 <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
-    <button type="button" pButton icon="fa-close" (click)="dialogDisplay=false" label="Cancel" class="ui-button-info"></button>
+    <button type="button" pButton icon="fa-close" (click)="cancel()" label="Cancel" class="ui-button-info"></button>
     <button type="button" pButton icon="fa-check" (click)="save()" label="Save"></button>
 </div>
