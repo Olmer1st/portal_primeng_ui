@@ -1,6 +1,6 @@
 <spinner-section *ngIf="loadingData"></spinner-section>
 <div class="relative" *ngIf="!loadingData">
-    <modules [modules]="modules"></modules>
+    <modules [modules]="modules" (onModulesChanged)="onModulesChanged()"></modules>
     <br />
     <users [modules]="modules"></users>
 </div>

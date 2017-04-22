@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AdminService} from './admin.service';
 import {IModule} from './../shared/shared.models';
+import {SelectItem} from 'primeng/primeng';
 
 @Component({
     moduleId: module.id,
@@ -10,7 +11,12 @@ import {IModule} from './../shared/shared.models';
 export class AdminComponent {
     modules: IModule[] = [];
     loadingData: boolean = false;
+
     constructor(private _adminService: AdminService) { }
+    onModulesChanged() {
+        let modules = this.modules.map(m => m);
+        this.modules = modules;
+    }
     private loadModules() {
         this.loadingData = true;
         this._adminService.getModules().subscribe(modules => {

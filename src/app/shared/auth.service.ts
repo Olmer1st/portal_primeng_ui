@@ -16,7 +16,7 @@ export class AuthService {
     private currentToken: string = null;
     public isAuthenticated: boolean = false;
     public isAuthorizedToSee(moduleName: string, roles: string[] = []): boolean {
-        if (this.currentUser && this.currentUser.modules) {
+        if (this.currentUser && this.currentUser.modules && this.currentUser.locked.toString() === "0") {
             if (roles.length) {
                 if (roles.includes(this.currentUser.role)) {
                     return this.currentUser.modules.includes(moduleName) || this.currentUser.role === 'admin';
@@ -48,8 +48,8 @@ export class AuthService {
     }
     constructor(private http: Http, @Inject(APP_CONFIG) private config: AppConfig) {
         this.makeAuthenticated().subscribe(res => {
-                this.isAuthenticated = res;
-            }, err => {
+            this.isAuthenticated = res;
+        }, err => {
             // Log errors if any
             console.log(err);
         });
@@ -78,9 +78,9 @@ export class AuthService {
     }
     private authorization(userEmail: string, userPassword: string): Observable<IUser> {
         // return Observable.of(true).delay(1000).do(val => this.isLoggedIn = true);
-        const url = this.config.apiRootUrl + `public/login/${userEmail}/${userPassword}`;
+        const url = this.config.apiRootUrl + `public/login`;
         // ...using get request
-        return this.http.get(url)
+        return this.http.post(url, { email: userEmail, password: userPassword })
             // ...and calling .json() on the response to return data
             .map((res: Response) => res.json())
             //...errors if any

@@ -2,6 +2,8 @@ import {Component, OnInit, Input} from '@angular/core';
 import {AdminService} from '../admin.service';
 import {IUser, IModule} from '../../shared/shared.models';
 import {User} from '../../shared/user/user.component';
+import {SelectItem} from 'primeng/primeng';
+
 @Component({
     moduleId: module.id,
     selector: "users",
@@ -9,12 +11,13 @@ import {User} from '../../shared/user/user.component';
 })
 export class UsersComponent implements OnInit {
     @Input()
-    modules: IModule[] = [];
+    modules: IModule[];
     users: IUser[] = [];
     dialogDisplay: boolean = false;
     selectedUser: IUser = null;
-    constructor(private _adminService: AdminService) {
-
+    constructor(private _adminService: AdminService) { }
+    refresh() {
+        this.loadUsers();
     }
     translateModules(modules) {
         if (!modules || !modules.length) {
@@ -22,7 +25,7 @@ export class UsersComponent implements OnInit {
         }
         return modules.map(m => {
             return this.modules.find(t => {
-                return t.mid === m;
+                return t.name === m;
             }
             ).title;
         }).join(",");

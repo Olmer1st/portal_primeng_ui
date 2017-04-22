@@ -1,4 +1,4 @@
-import {Component, Output, OnInit, Input, EventEmitter} from '@angular/core';
+import {Component, Output, OnInit, Input, EventEmitter, OnChanges, SimpleChanges} from '@angular/core';
 import {IUser, IModule} from '../shared.models';
 import {SelectItem} from 'primeng/primeng';
 
@@ -7,11 +7,11 @@ import {SelectItem} from 'primeng/primeng';
     selector: "user",
     templateUrl: "user.component.html"
 })
-export class UserComponent implements OnInit {
+export class UserComponent implements OnInit, OnChanges {
     @Input()
     user: IUser = null;
     @Input()
-    modules: IModule[] = [];
+    modules: IModule[];
     userModules: SelectItem[] = [];
     @Output() onCancelClicked = new EventEmitter();
     @Output() onSaveClicked = new EventEmitter<IUser>();
@@ -26,16 +26,27 @@ export class UserComponent implements OnInit {
     cancel(): void {
         this.onCancelClicked.emit();
     }
+
     save(): void {
         if (this.user.role === 'admin') {
             this.user.modules = [];
         }
         this.onSaveClicked.emit(this.user);
     }
-    ngOnInit(): void {
-        this.userModules = this.modules.map(m => {
-            return { label: m.title, value: m.mid };
+    private cloneModules(modules: IModule[] = []) {
+        this.userModules = modules.map(m => {
+            return { label: m.title, value: m.name };
         });
+    }
+    ngOnInit(): void {
+        this.cloneModules(this.modules);
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        if (changes.modules && !changes.modules.firstChange) {
+            this.cloneModules(changes.modules.currentValue);
+        }
+        // console.log(changes);
     }
 }
 

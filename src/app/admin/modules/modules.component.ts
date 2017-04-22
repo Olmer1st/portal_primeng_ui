@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {AdminService} from '../admin.service';
 import {IModule} from '../../shared/shared.models';
 
@@ -9,12 +9,11 @@ import {IModule} from '../../shared/shared.models';
 })
 export class ModulesComponent implements OnInit {
     @Input()
-    modules: IModule[] = [];
+    modules: IModule[];
     dialogDisplay: boolean = false;
     selectedModule: IModule = null;
-    constructor(private _adminService: AdminService) {
-
-    }
+    @Output() onModulesChanged = new EventEmitter();
+    constructor(private _adminService: AdminService) {}
     newModule() {
         this.selectedModule = new Module();
         this.dialogDisplay = true;
@@ -29,6 +28,7 @@ export class ModulesComponent implements OnInit {
                 } else {
                     this.modules.push(me);
                 }
+                this.onModulesChanged.emit();
             } else {
                 console.error(me);
             }
@@ -46,6 +46,7 @@ export class ModulesComponent implements OnInit {
             if (r && !r.error) {
                 let index = this.modules.findIndex(m => m.mid === me.mid);
                 this.modules.splice(index, 1);
+                this.onModulesChanged.emit();
             } else {
                 console.error(me);
             }

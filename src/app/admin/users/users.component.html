@@ -26,12 +26,13 @@
             <i class="fa fa-unlock-alt" aria-hidden="true"></i>
         </ng-template>
         <ng-template let-node="rowData" pTemplate="body">
-            <button pButton type="text" (click)="lockUser(node)" icon="{{!(node.locked ==='0')?'fa-ban':'fa-unlock'}}"></button>
+            <button pButton type="text" (click)="lockUser(node)" icon="{{!(node.locked.toString() ==='0')?'fa-ban':'fa-unlock'}}"></button>
         </ng-template>
     </p-column>
      <p-footer>
          <div class="ui-helper-clearfix" style="width:100%">
              <button pButton type="button" icon="fa-user-plus" style="float:left" (click)="newUser()" iconPos="left" label="Add new user"></button>
+             <button pButton type="button" icon="fa-refresh" style="float:left" (click)="refresh()"></button>
          </div>
      </p-footer>
 </p-dataTable>
