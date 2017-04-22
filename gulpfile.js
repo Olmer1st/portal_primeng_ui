@@ -76,18 +76,23 @@ gulp.task("primeng", () => {
 gulp.task("libs", () => {
     return gulp.src([
             'core-js/client/shim.min.js',
+            'core-js/client/shim.min.js.map',
             'systemjs/dist/system-polyfills.js',
+            'systemjs/dist/system-polyfills.js.map',
             'systemjs/dist/system.src.js',
+            'systemjs/dist/system.src.js.map',
             'reflect-metadata/Reflect.js',
+            'reflect-metadata/Reflect.js.map',
             'rxjs/**/*.js',
+            'rxjs/**/*.js.map',
             'zone.js/dist/**',
             '@angular/**/bundles/**',
             'file-saver/FileSaver.js',
-            // 'ng2-bootstrap/bundles/**',
-            // 'ng2-select/**/*.js',
             'moment/min/moment-with-locales.js',
             'ng-sidebar/lib/*.js',
-            'primeng/**/*.js'
+            'ng-sidebar/lib/*.js.map',
+            'primeng/**/*.js',
+            'primeng/**/*.js.map'
         ], {
             cwd: "node_modules/**"
         }) /* Glob required here. */

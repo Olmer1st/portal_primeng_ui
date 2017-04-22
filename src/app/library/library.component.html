@@ -30,10 +30,10 @@
                         <div class="ui-grid-col-1">
                             <button pButton type="button" (click)="selectedBooks=[]" label="Clear" icon="fa-eraser" style="width:150px;"></button>
                         </div>
-                        <div class="ui-grid-col-1">
+                        <div class="ui-grid-col-1" style="margin-left:20px">
                             <button pButton type="button" [disabled]="selectedBooksDownloading" (click)="downloadBooks()" label="Download" icon="fa-download" style="width:150px;"></button>
                         </div>
-                        <div style="margin-left:15px;">
+                        <div style="margin-left:20px;">
                             <img *ngIf="selectedBooksDownloading" src="assets/media/loading_large_icon.gif" style="width:30px;height:auto;"/>
                         </div>
                     </div>
