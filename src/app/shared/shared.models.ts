@@ -16,3 +16,10 @@ export interface IModule {
     title:string;
     error?:string;
 }
+
+export interface IActiveUser {
+    email:string;
+    ip:string;
+    title:string;
+    error?:string;
+}

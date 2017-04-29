@@ -1,6 +1,6 @@
 import { Injectable, Inject }     from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { IUser, IModule}  from '../shared/shared.models';
+import { IUser, IModule, IActiveUser}  from '../shared/shared.models';
 import { APP_CONFIG, AppConfig } from '../portal/portal.providers';
 import {AuthService} from '../shared/auth.service';
 import {Observable} from 'rxjs/Rx';
@@ -29,6 +29,16 @@ export class AdminService {
     }
     getModules(): Observable<IModule[]> {
         const url = this.config.apiRootUrl + "admin/modules";
+        // ...using get request
+        return this.http.get(url, this._authService.httpOptions)
+            // ...and calling .json() on the response to return data
+            .map((res: Response) => res.json())
+            //...errors if any
+            .catch((error: any) => Observable.throw(error || 'Server error'));
+
+    }
+    getActiveUsers(): Observable<IActiveUser[]> {
+        const url = this.config.apiRootUrl + "admin/activeusers";
         // ...using get request
         return this.http.get(url, this._authService.httpOptions)
             // ...and calling .json() on the response to return data

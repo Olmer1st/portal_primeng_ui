@@ -10,11 +10,12 @@ import { SpinnerComponent }  from '../shared/spinner/spinner.component';
 import { SearchPanelComponent }  from '../library/searchpanel/searchpanel.component';
 import { UserComponent }  from '../shared/user/user.component';
 import { UsersComponent }  from '../admin/users/users.component';
+import { ActiveUsersComponent }  from '../admin/active_users/activeusers.component';
 import { ModulesComponent }  from '../admin/modules/modules.component';
 import {PortalComponent} from './portal.component';
 import {HeaderComponent} from '../header/header.component';
 import {FooterComponent} from '../footer/footer.component';
-import { DataTableModule, DropdownModule, InputSwitchModule, PanelModule, CheckboxModule, DialogModule, GrowlModule,
+import { TabMenuModule, DataTableModule, DropdownModule, InputSwitchModule, PanelModule, CheckboxModule, DialogModule, GrowlModule,
     ButtonModule, SplitButtonModule, ToolbarModule, InputTextModule, MultiSelectModule,
     PasswordModule, AutoCompleteModule, TreeTableModule, SharedModule} from 'primeng/primeng';
 import { SidebarModule } from 'ng-sidebar';
@@ -30,8 +31,9 @@ import {AdminService} from '../admin/admin.service';
         CommonModule,
         FormsModule,
         PortalRoutes,
-        DataTableModule, InputSwitchModule, DropdownModule, PasswordModule, CheckboxModule, DialogModule, GrowlModule, MultiSelectModule,
-        PanelModule, ButtonModule, SplitButtonModule, ToolbarModule, InputTextModule, AutoCompleteModule, TreeTableModule, SharedModule,
+        TabMenuModule, DataTableModule, InputSwitchModule, DropdownModule, PasswordModule, CheckboxModule, DialogModule,
+        GrowlModule, MultiSelectModule, PanelModule, ButtonModule, SplitButtonModule,
+        ToolbarModule, InputTextModule, AutoCompleteModule, TreeTableModule, SharedModule,
         HttpModule,
         JsonpModule,
         SidebarModule
@@ -47,7 +49,8 @@ import {AdminService} from '../admin/admin.service';
         FileSizePipe,
         UserComponent,
         UsersComponent,
-        ModulesComponent
+        ModulesComponent,
+        ActiveUsersComponent
     ],
     providers: [
         { provide: APP_CONFIG, useValue: PORTAL_CONFIG },
