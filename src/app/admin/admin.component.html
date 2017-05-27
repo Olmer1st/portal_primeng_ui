@@ -2,8 +2,7 @@
 <div class="relative" *ngIf="!loadingData">
     <p-tabMenu [model]="adminTabs" [activeItem]="activeTab"></p-tabMenu>
     <modules *ngIf="activeTab.label == 'Modules'" [modules]="modules" (onModulesChanged)="onModulesChanged()"></modules>
-    <br />
     <users *ngIf="activeTab.label == 'Users'" [modules]="modules"></users>
-    <br />
     <activeusers *ngIf="activeTab.label == 'Active Users'"></activeusers>
+    <newsadmin *ngIf="activeTab.label == 'News'"></newsadmin>
 </div>

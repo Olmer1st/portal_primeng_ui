@@ -12,7 +12,9 @@ body {
     width: 100%;
     background-color: white;
 }
-
+.ui-editor-toolbar{
+    background: snow !important;
+}
 .header {
     display: inline-block;
     position: relative;

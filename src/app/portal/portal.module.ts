@@ -11,13 +11,14 @@ import { SearchPanelComponent }  from '../library/searchpanel/searchpanel.compon
 import { UserComponent }  from '../shared/user/user.component';
 import { UsersComponent }  from '../admin/users/users.component';
 import { ActiveUsersComponent }  from '../admin/active_users/activeusers.component';
+import { NewsAdminComponent }  from '../admin/news_admin/news.component';
 import { ModulesComponent }  from '../admin/modules/modules.component';
 import {PortalComponent} from './portal.component';
 import {HeaderComponent} from '../header/header.component';
 import {FooterComponent} from '../footer/footer.component';
 import { TabMenuModule, DataTableModule, DropdownModule, InputSwitchModule, PanelModule, CheckboxModule, DialogModule, GrowlModule,
     ButtonModule, SplitButtonModule, ToolbarModule, InputTextModule, MultiSelectModule,
-    PasswordModule, AutoCompleteModule, TreeTableModule, SharedModule} from 'primeng/primeng';
+    PasswordModule, AutoCompleteModule, TreeTableModule, ContextMenuModule, SharedModule, EditorModule} from 'primeng/primeng';
 import { SidebarModule } from 'ng-sidebar';
 import {PortalRoutes, routedComponents} from './portal.routes';
 import {APP_CONFIG, PORTAL_CONFIG} from './portal.providers';
@@ -33,7 +34,7 @@ import {AdminService} from '../admin/admin.service';
         PortalRoutes,
         TabMenuModule, DataTableModule, InputSwitchModule, DropdownModule, PasswordModule, CheckboxModule, DialogModule,
         GrowlModule, MultiSelectModule, PanelModule, ButtonModule, SplitButtonModule,
-        ToolbarModule, InputTextModule, AutoCompleteModule, TreeTableModule, SharedModule,
+        ToolbarModule, InputTextModule, AutoCompleteModule, TreeTableModule, SharedModule, ContextMenuModule, EditorModule,
         HttpModule,
         JsonpModule,
         SidebarModule
@@ -50,7 +51,8 @@ import {AdminService} from '../admin/admin.service';
         UserComponent,
         UsersComponent,
         ModulesComponent,
-        ActiveUsersComponent
+        ActiveUsersComponent,
+        NewsAdminComponent
     ],
     providers: [
         { provide: APP_CONFIG, useValue: PORTAL_CONFIG },

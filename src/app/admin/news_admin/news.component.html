@@ -1,0 +1,64 @@
+<p-dialog header="Module" [(visible)]="dialogDisplay" width="800" modal="modal" responsive="true" appendTo="body" [draggable]="true" showEffect="fade">
+    <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="selectedNewsFile">
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><label>Title:</label></div>
+            <div class="ui-grid-col-8"><input pInputText [(ngModel)]="selectedNewsFile.title" /></div>
+        </div>
+        <br />
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><label>Module:</label></div>
+            <div class="ui-grid-col-8"><p-dropdown [options]="modules" [(ngModel)]="selectedNewsFile.module"></p-dropdown></div>
+        </div>
+        <br />
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><label>File Picture:</label></div>
+            <div class="ui-grid-col-8"><input type="text" pInputText [(ngModel)]="selectedNewsFile.picture" /></div>
+        </div>
+        <br />
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><label>Short Description:</label></div>
+            <div class="ui-grid-col-8"><p-editor [(ngModel)]="selectedNewsFile.shortdesc" [style]="{'height':'120px'}">
+                <p-header>
+                    <span class="ql-formats">
+                        <button class="ql-bold"></button>
+                        <button class="ql-italic"></button>
+                        <button class="ql-underline"></button>
+                    </span>
+                </p-header>
+            </p-editor></div>
+        </div>
+        <br />
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><label>Full Context:</label></div>
+            <div class="ui-grid-col-8"><p-editor [(ngModel)]="selectedNewsFile.fulldesc" [style]="{'height':'250px'}">
+            </p-editor></div>
+        </div>
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+            <button type="button" pButton icon="fa-close" (click)="dialogDisplay=false" label="Cancel" class="ui-button-info"></button>
+            <button type="button" pButton icon="fa-check" (click)="save()" label="Save"></button>
+        </div>
+    </p-footer>
+</p-dialog>
+<p-dataTable [value]="news" dataKey="nid" [paginator]="true" rows="10" [responsive]="true">
+    <p-header>News</p-header>
+    <p-column field="mid" header="Id" [style]="{'width':'150px'}">
+        <ng-template let-node="rowData" pTemplate="body">
+            <div class="float-left" style="margin-top: 5px;">
+                <strong>{{node.nid}}</strong>
+            </div>
+            <button pButton type="button" icon="fa-trash" class="float-right" (click)="delete(node)"></button>
+            <button pButton type="button" icon="fa-pencil-square-o" (click)="edit(node)" class="float-right"></button>
+            <div class="clearfix"></div>
+        </ng-template>
+    </p-column>
+    <p-column field="title" header="Title"></p-column>
+    <p-column field="module" header="Module"></p-column>
+    <p-column field="inserted" header="Date"></p-column>
+    <p-footer>
+        <div class="ui-helper-clearfix" style="width:100%">
+            <button pButton type="button" icon="fa-plus" style="float:left" (click)="newNewsFile()" iconPos="left" label="Add news"></button>
+        </div>
+    </p-footer>
+</p-dataTable>

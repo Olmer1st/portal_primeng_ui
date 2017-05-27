@@ -70,6 +70,13 @@ gulp.task("primeng", () => {
         })
         .pipe(gulp.dest("build/assets/primeng"));
 });
+
+gulp.task("quill", () => {
+    return gulp.src(["dist/*.css"], {
+            cwd: "node_modules/quill"
+        })
+        .pipe(gulp.dest("build/assets/quill"));
+});
 /**
  * Copy all required libraries into build directory.
  */
@@ -92,7 +99,9 @@ gulp.task("libs", () => {
             'ng-sidebar/lib/*.js',
             'ng-sidebar/lib/*.js.map',
             'primeng/**/*.js',
-            'primeng/**/*.js.map'
+            'primeng/**/*.js.map',
+            'quill/dist/*.js',
+            'quill/dist/*.js.map',
         ], {
             cwd: "node_modules/**"
         }) /* Glob required here. */
@@ -114,6 +123,6 @@ gulp.task('watch', () => {
 /**
  * Build the project.
  */
-gulp.task("build", ['compile', 'resources', 'font-awesome', 'primeng', 'libs'], () => {
+gulp.task("build", ['compile', 'resources', 'font-awesome', 'primeng', 'quill', 'libs'], () => {
     console.log("Building the project ...");
 });

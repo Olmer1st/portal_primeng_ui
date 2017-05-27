@@ -53,6 +53,13 @@ export class AdminComponent {
                     //event.item: menuitem metadata
                     this.activeTab = event.item;
                 }
+            },
+            {
+                label: 'News', icon: 'fa-news', command: (event) => {
+                    //event.originalEvent: Browser event
+                    //event.item: menuitem metadata
+                    this.activeTab = event.item;
+                }
             }
         ];
         this.activeTab = this.adminTabs[2];

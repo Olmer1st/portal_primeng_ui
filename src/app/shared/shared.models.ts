@@ -23,3 +23,14 @@ export interface IActiveUser {
     title:string;
     error?:string;
 }
+
+export interface INewsFile {
+    nid:string;
+    module:string;
+    title:string;
+    shortdesc:string;
+    fulldesc:string;
+    picture:string;
+    inserted:string;
+    error?:string;
+}
