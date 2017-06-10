@@ -4,5 +4,5 @@
     <modules *ngIf="activeTab.label == 'Modules'" [modules]="modules" (onModulesChanged)="onModulesChanged()"></modules>
     <users *ngIf="activeTab.label == 'Users'" [modules]="modules"></users>
     <activeusers *ngIf="activeTab.label == 'Active Users'"></activeusers>
-    <newsadmin *ngIf="activeTab.label == 'News'"></newsadmin>
+    <newsadmin *ngIf="activeTab.label == 'News'" [modules]="modules"></newsadmin>
 </div>

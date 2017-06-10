@@ -1,25 +1,25 @@
-:host /deep/ .ng-sidebar {
-    position: absolute;
+:host >>> .ng-sidebar {
+    position: absolute !important;
 }
 
-:host /deep/ .ui-datatable {
+:host >>> .ui-datatable {
     margin-top: 20px;
     margin-left: 2px;
     margin-right: 2px;
 }
 
-:host /deep/ .ng-sidebar--opened {
+:host >>> .ng-sidebar--opened {
     top: 0 !important;
-    position: relative;
+    position: relative !important;
 }
 
-:host /deep/ .ng-sidebar__content {
-    height: auto;
-    overflow: hidden;
+:host >>> .ng-sidebar__content {
+    height: auto !important;
+    overflow: hidden !important;
     margin: auto !important;
 }
 
-:host /deep/ .ui-datatable thead.ui-datatable-thead .ui-chkbox-box{
+:host >>> .ui-datatable thead.ui-datatable-thead .ui-chkbox-box{
     display:none;
 }
 /*p-datatable thead.ui-datatable-thead p-dtcheckbox {}*/
